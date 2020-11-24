@@ -90,6 +90,10 @@ AddOutputFilter chunkFilter
 		<Property Name="target.WebServer.ViAccess" Type="Str">+*</Property>
 		<Property Name="target.webservices.SecurityAPIKey" Type="Str">PqVr/ifkAQh+lVrdPIykXlFvg12GhhQFR8H9cUhphgg=:pTe9HRlQuMfJxAG6QCGq7UvoUpJzAzWGKy5SbZ+roSU=</Property>
 		<Property Name="target.webservices.ValidTimestampWindow" Type="Int">15</Property>
+		<Item Name="4310 DMM Close and Stop Stream.vi" Type="VI" URL="../VIs/4310 DMM Close and Stop Stream.vi"/>
+		<Item Name="4310 DMM Configure and Start.vi" Type="VI" URL="../VIs/4310 DMM Configure and Start.vi"/>
+		<Item Name="4310 DMM Measure.vi" Type="VI" URL="../VIs/4310 DMM Measure.vi"/>
+		<Item Name="Asynchronous Stream 4310 DMM.vi" Type="VI" URL="../VIs/Asynchronous Stream 4310 DMM.vi"/>
 		<Item Name="liblabview_grpc_server.so" Type="Document" URL="../../../LinuxRT/liblabview_grpc_server.so"/>
 		<Item Name="RTExampleQueryServer.vi" Type="VI" URL="../RTExampleQueryServer.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -278,10 +282,9 @@ AddOutputFilter chunkFilter
 				<Item Name="WDT Append Waveforms I32.vi" Type="VI" URL="/&lt;vilib&gt;/Waveform/WDTOps.llb/WDT Append Waveforms I32.vi"/>
 				<Item Name="WDT Append Waveforms I64.vi" Type="VI" URL="/&lt;vilib&gt;/Waveform/WDTOps.llb/WDT Append Waveforms I64.vi"/>
 			</Item>
-			<Item Name="4310 and DMM.vi" Type="VI" URL="../../../PackPulse/4310 and DMM.vi"/>
+			<Item Name="Global Operations.ctl" Type="VI" URL="../VIs/Global Operations.ctl"/>
 			<Item Name="gprc-support.lvlib" Type="Library" URL="../../VIs/gprc-support.lvlib"/>
 			<Item Name="labview-grpc-query-server.lvlib" Type="Library" URL="../VIs/labview-grpc-query-server.lvlib"/>
-			<Item Name="labview_grpc_server.dll" Type="Document" URL="../../build/Debug/labview_grpc_server.dll"/>
 			<Item Name="liblabview_grpc_server.so" Type="Document" URL="/home/lvuser/liblabview_grpc_server.so"/>
 			<Item Name="nidmm_32.dll" Type="Document" URL="nidmm_32.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
@@ -289,12 +292,13 @@ AddOutputFilter chunkFilter
 			<Item Name="nilvaiu.dll" Type="Document" URL="nilvaiu.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
+			<Item Name="Non Stream 4310 DMM.vi" Type="VI" URL="../VIs/Non Stream 4310 DMM.vi"/>
 			<Item Name="QueryServer_AnalogInputRequest.ctl" Type="VI" URL="../VIs/QueryServer_AnalogInputRequest.ctl"/>
-			<Item Name="QueryServer_gRPCid.ctl" Type="VI" URL="../VIs/QueryServer_gRPCid.ctl"/>
+			<Item Name="stopstream.vi" Type="VI" URL="../VIs/stopstream.vi"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="My Package" Type="{CED73189-3D7D-4B2F-B6C9-EA03FBC59E14}">
-				<Property Name="IPK_lastBuiltPackage" Type="Str">rttest_1.0.0-3_x64.ipk</Property>
+				<Property Name="IPK_lastBuiltPackage" Type="Str">rttest_1.0.0-5_x64.ipk</Property>
 				<Property Name="IPK_startup.Restart" Type="Bool">true</Property>
 				<Property Name="IPK_startup.Target.Child" Type="Str">{63DF021A-3CC7-4C71-8872-88D0F1965E58}</Property>
 				<Property Name="IPK_startup.Target.Destination" Type="Str">root_0</Property>
@@ -302,7 +306,7 @@ AddOutputFilter chunkFilter
 				<Property Name="PKG_actions.Count" Type="Int">0</Property>
 				<Property Name="PKG_autoIncrementBuild" Type="Bool">true</Property>
 				<Property Name="PKG_autoSelectDeps" Type="Bool">false</Property>
-				<Property Name="PKG_buildNumber" Type="Int">4</Property>
+				<Property Name="PKG_buildNumber" Type="Int">6</Property>
 				<Property Name="PKG_buildSpecName" Type="Str">My Package</Property>
 				<Property Name="PKG_dependencies.Count" Type="Int">0</Property>
 				<Property Name="PKG_description" Type="Str"></Property>
@@ -346,7 +350,7 @@ AddOutputFilter chunkFilter
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{293DB03F-0774-4260-AC2D-DA1AAED5F3CD}</Property>
 				<Property Name="Bld_targetDestDir" Type="Path">/home/lvuser/natinst/bin</Property>
-				<Property Name="Bld_version.build" Type="Int">4</Property>
+				<Property Name="Bld_version.build" Type="Int">7</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">startup.rtexe</Property>
 				<Property Name="Destination[0].path" Type="Path">/home/lvuser/natinst/bin/startup.rtexe</Property>
@@ -363,7 +367,11 @@ AddOutputFilter chunkFilter
 				<Property Name="Source[1].itemID" Type="Ref">/NI-PXIe-8840Quad-Core-031036AB/RTExampleQueryServer.vi</Property>
 				<Property Name="Source[1].sourceInclusion" Type="Str">TopLevel</Property>
 				<Property Name="Source[1].type" Type="Str">VI</Property>
-				<Property Name="SourceCount" Type="Int">2</Property>
+				<Property Name="Source[2].destinationIndex" Type="Int">1</Property>
+				<Property Name="Source[2].itemID" Type="Ref">/NI-PXIe-8840Quad-Core-031036AB/Asynchronous Stream 4310 DMM.vi</Property>
+				<Property Name="Source[2].sourceInclusion" Type="Str">Include</Property>
+				<Property Name="Source[2].type" Type="Str">VI</Property>
+				<Property Name="SourceCount" Type="Int">3</Property>
 				<Property Name="TgtF_companyName" Type="Str">National Instruments</Property>
 				<Property Name="TgtF_fileDescription" Type="Str">My Real-Time Application</Property>
 				<Property Name="TgtF_internalName" Type="Str">My Real-Time Application</Property>

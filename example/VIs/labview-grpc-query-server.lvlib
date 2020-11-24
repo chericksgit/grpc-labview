@@ -13,7 +13,6 @@
 		<Item Name="QueryServer_AddQueryEvent.vi" Type="VI" URL="../QueryServer_AddQueryEvent.vi"/>
 		<Item Name="QueryServer_AddRegisterEvent.vi" Type="VI" URL="../QueryServer_AddRegisterEvent.vi"/>
 		<Item Name="QueryServer_AddTestDataTypesEvent.vi" Type="VI" URL="../QueryServer_AddTestDataTypesEvent.vi"/>
-		<Item Name="QueryServer_CreateServer.vi" Type="VI" URL="../QueryServer_CreateServer.vi"/>
 		<Item Name="QueryServer_Event.ctl" Type="VI" URL="../QueryServer_Event.ctl"/>
 		<Item Name="QueryServer_InvokeEventData.ctl" Type="VI" URL="../QueryServer_InvokeEventData.ctl"/>
 		<Item Name="QueryServer_InvokeRequest.ctl" Type="VI" URL="../QueryServer_InvokeRequest.ctl"/>
@@ -23,9 +22,11 @@
 		<Item Name="QueryServer_QueryResponse.ctl" Type="VI" URL="../QueryServer_QueryResponse.ctl"/>
 		<Item Name="QueryServer_RegisterEventData.ctl" Type="VI" URL="../QueryServer_RegisterEventData.ctl"/>
 		<Item Name="QueryServer_RegisterRequest.ctl" Type="VI" URL="../QueryServer_RegisterRequest.ctl"/>
-		<Item Name="QueryServer_ServerRefs.ctl" Type="VI" URL="../QueryServer_ServerRefs.ctl"/>
 	</Item>
 	<Item Name="QueryServer_AddAnalogInputEvent.vi" Type="VI" URL="../QueryServer_AddAnalogInputEvent.vi">
+		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+	</Item>
+	<Item Name="QueryServer_AddStreamAnalogInputEvent.vi" Type="VI" URL="../QueryServer_AddStreamAnalogInputEvent.vi">
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 	</Item>
 	<Item Name="QueryServer_AnalogInputData.ctl" Type="VI" URL="../QueryServer_AnalogInputData.ctl"/>
@@ -39,6 +40,7 @@
 	<Item Name="QueryServer_SetAnalogInputData.vi" Type="VI" URL="../QueryServer_SetAnalogInputData.vi"/>
 	<Item Name="QueryServer_SetResponse_Invoke.vi" Type="VI" URL="../QueryServer_SetResponse_Invoke.vi"/>
 	<Item Name="QueryServer_SetResponse_Query.vi" Type="VI" URL="../QueryServer_SetResponse_Query.vi"/>
+	<Item Name="QueryServer_SetStreamAnalogInputData.vi" Type="VI" URL="../QueryServer_SetStreamAnalogInputData.vi"/>
 	<Item Name="QueryServer_SetTestDataTypesResults.vi" Type="VI" URL="../QueryServer_SetTestDataTypesResults.vi"/>
 	<Item Name="QueryServer_Start.vi" Type="VI" URL="../QueryServer_Start.vi"/>
 	<Item Name="QueryServer_Stop.vi" Type="VI" URL="../QueryServer_Stop.vi"/>

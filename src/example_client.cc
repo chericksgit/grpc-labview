@@ -340,4 +340,32 @@ int main(int argc, char **argv)
 		}
 		cout << "Error Status: " << response.errorstatus() << ", Error Code: " << response.errorcode() << ", Error Source: " << response.errorsource() << endl;
     }
+/*	cout << "Streaming AI measurements" << endl;
+    {
+        auto startTime = chrono::steady_clock::now();
+        ClientContext ctx;
+        AnalogInputRequest request;
+        AnalogInputData response;
+        auto measurementReader = client.m_Stub->StreamAnalogInput(&ctx, request);
+        int x=0;
+        cout << "First Results: "  << endl;
+        while (measurementReader->Read(&response))
+        {
+            if (++x <= 50)
+            {
+                cout << "DMM Value: " << response.dmmvalue()[x] << ", DAQ Values: " << response.daqvalue0()[x] << ", " << response.daqvalue1()[x] << ", " << response.daqvalue2()[x] << ", " << response.daqvalue3()[x] << ", " << response.daqvalue4()[x] << ", " << response.daqvalue5()[x] << ", " << response.daqvalue6()[x] << ", " << response.daqvalue7()[x] << endl;
+            }
+			else
+			{
+				break;
+			}
+        }
+		client.Invoke("stopstream", "");
+		Status status = measurementReader->Finish();
+		cout << "Server notifications complete" << endl;
+        auto endTime = chrono::steady_clock::now();
+        auto elapsed = chrono::duration_cast<chrono::milliseconds>(endTime - startTime);
+        cout << "Analog Input measurement took: " << elapsed.count() << " milliseconds" << endl;
+        cout << "Received " << response.daqvalue0().size() << " measurements." << endl;
+    }*/
 }
