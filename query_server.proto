@@ -36,8 +36,32 @@ service QueryServer {
   rpc Invoke (InvokeRequest) returns (InvokeResponse) {}
   rpc Query (QueryRequest) returns (QueryResponse) {}
   rpc Register (RegistrationRequest) returns (stream ServerEvent) {}
-
+  rpc PerformAnalogInput(AnalogInputRequest) returns (AnalogInputData) {}
   rpc TestDataTypes(TestDataTypesParameters) returns (TestDataTypesParameters) {}
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message AnalogInputRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message AnalogInputData {
+  repeated float DMMValue = 1;
+  repeated float DAQValue0 = 2;
+  repeated float DAQValue1 = 3;
+  repeated float DAQValue2 = 4;
+  repeated float DAQValue3 = 5;
+  repeated float DAQValue4 = 6;
+  repeated float DAQValue5 = 7;
+  repeated float DAQValue6 = 8;
+  repeated float DAQValue7 = 9;
+  string t0 = 10;
+  float dt = 11;
+  bool errorstatus = 12;
+  int32 errorcode = 13;
+  string errorsource = 14;
 }
 
 //---------------------------------------------------------------------

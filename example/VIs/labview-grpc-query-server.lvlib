@@ -25,12 +25,18 @@
 		<Item Name="QueryServer_RegisterRequest.ctl" Type="VI" URL="../QueryServer_RegisterRequest.ctl"/>
 		<Item Name="QueryServer_ServerRefs.ctl" Type="VI" URL="../QueryServer_ServerRefs.ctl"/>
 	</Item>
+	<Item Name="QueryServer_AddAnalogInputEvent.vi" Type="VI" URL="../QueryServer_AddAnalogInputEvent.vi">
+		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+	</Item>
+	<Item Name="QueryServer_AnalogInputData.ctl" Type="VI" URL="../QueryServer_AnalogInputData.ctl"/>
 	<Item Name="QueryServer_DataTypeTest.ctl" Type="VI" URL="../QueryServer_DataTypeTest.ctl"/>
 	<Item Name="QueryServer_Event_Fire.vi" Type="VI" URL="../QueryServer_Event_Fire.vi"/>
+	<Item Name="QueryServer_GetRequest_AnalogInput.vi" Type="VI" URL="../QueryServer_GetRequest_AnalogInput.vi"/>
 	<Item Name="QueryServer_GetRequest_Invoke.vi" Type="VI" URL="../QueryServer_GetRequest_Invoke.vi"/>
 	<Item Name="QueryServer_GetRequest_Query.vi" Type="VI" URL="../QueryServer_GetRequest_Query.vi"/>
 	<Item Name="QueryServer_GetRequest_Register.vi" Type="VI" URL="../QueryServer_GetRequest_Register.vi"/>
 	<Item Name="QueryServer_GetTestDataTypesParameters.vi" Type="VI" URL="../QueryServer_GetTestDataTypesParameters.vi"/>
+	<Item Name="QueryServer_SetAnalogInputData.vi" Type="VI" URL="../QueryServer_SetAnalogInputData.vi"/>
 	<Item Name="QueryServer_SetResponse_Invoke.vi" Type="VI" URL="../QueryServer_SetResponse_Invoke.vi"/>
 	<Item Name="QueryServer_SetResponse_Query.vi" Type="VI" URL="../QueryServer_SetResponse_Query.vi"/>
 	<Item Name="QueryServer_SetTestDataTypesResults.vi" Type="VI" URL="../QueryServer_SetTestDataTypesResults.vi"/>

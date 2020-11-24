@@ -298,12 +298,12 @@ int main(int argc, char **argv)
     auto channel = grpc::CreateChannel(target_str, creds);
     QueryClient client(channel);
 
-    DoDataTypeTest(client);
+    //DoDataTypeTest(client);
 
     auto result = client.Query("Uptime");
     cout << "Server uptime: " << result << endl;
 
-    auto reader = client.Register("Heartbeat");
+    /*auto reader = client.Register("Heartbeat");
     int count = 0;
     ServerEvent event;
     while (reader->Read(&event))
@@ -317,4 +317,27 @@ int main(int argc, char **argv)
     }
     Status status = reader->Finish();
     cout << "Server notifications complete" << endl;
+	*/
+	
+	auto iterations = client.Query("numiterations:100");
+    cout << "numiterations: " << iterations << endl;
+	
+	cout << "Performing AI measurements" << endl;
+    {
+        auto startTime = chrono::steady_clock::now();
+        ClientContext ctx;
+        AnalogInputRequest request;
+        AnalogInputData response;
+        client.m_Stub->PerformAnalogInput(&ctx, request, &response);
+        auto endTime = chrono::steady_clock::now();
+        auto elapsed = chrono::duration_cast<chrono::milliseconds>(endTime - startTime);
+        cout << "Analog Input measurements took: " << elapsed.count() << " milliseconds" << endl;
+        cout << "Received " << response.daqvalue0().size() << " measurements." << endl;
+        cout << "t0 Value: " << response.t0() << ", dt Value: " << response.dt() << endl;
+		for (int x = 0; x < 10; ++x)
+		{
+        cout << "DMM Value: " << response.dmmvalue()[x] << ", DAQ Values: " << response.daqvalue0()[x] << ", " << response.daqvalue1()[x] << ", " << response.daqvalue2()[x] << ", " << response.daqvalue3()[x] << ", " << response.daqvalue4()[x] << ", " << response.daqvalue5()[x] << ", " << response.daqvalue6()[x] << ", " << response.daqvalue7()[x] << endl;
+		}
+		cout << "Error Status: " << response.errorstatus() << ", Error Code: " << response.errorcode() << ", Error Source: " << response.errorsource() << endl;
+    }
 }
