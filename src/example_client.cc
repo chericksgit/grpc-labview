@@ -322,7 +322,7 @@ int main(int argc, char **argv)
 	auto iterations = client.Query("numiterations:100");
     cout << "numiterations: " << iterations << endl;
 	
-	auto rate = client.Query("samplerate:10000");
+	auto rate = client.Query("samplerate:20000");
     cout << "samplerate: " << rate << endl;
 	
 	cout << "Performing AI measurements" << endl;
