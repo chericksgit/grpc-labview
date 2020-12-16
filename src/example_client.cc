@@ -349,6 +349,10 @@ int main(int argc, char **argv)
 		ClientContext ctx;
         AnalogInputRequest request;
         AnalogInputData response;
+		
+		auto startstream = client.Query("startstream?");
+		cout << "startstream?: " << startstream << endl;
+		
         auto measurementReader = client.m_Stub->StreamAnalogInput(&ctx, request);
         int x=0;
         cout << "First Results: "  << endl;
@@ -365,6 +369,8 @@ int main(int argc, char **argv)
             }
 			else
 			{
+				startstream = client.Query("startstream?");
+				cout << "startstream?: " << startstream << endl;
 				cout << "Error Status: " << response.errorstatus() << ", Error Code: " << response.errorcode() << ", Error Source: " << response.errorsource() << endl;
 				cout << "Invoke stopstream" << endl;
 				client.Invoke("stopstream", "");
@@ -381,7 +387,8 @@ int main(int argc, char **argv)
 			endTime = chrono::steady_clock::now();
 			elapsed = chrono::duration_cast<chrono::milliseconds>(endTime - startTime);
 		}
-		
+		startstream = client.Query("startstream?");
+		cout << "startstream?: " << startstream << endl;
 		cout << "Done!" << endl;
     }
 }
