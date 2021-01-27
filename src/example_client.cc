@@ -359,13 +359,17 @@ int main(int argc, char **argv)
         
 		measurementReader->Read(&response);
 		cout << "t0 Value: " << response.t0() << ", dt Value: " << response.dt() << endl;
-		cout << "DMM Value: " << response.dmmvalue()[x] << ", DAQ Values: " << response.daqvalue0()[x] << ", " << response.daqvalue1()[x] << ", " << response.daqvalue2()[x] << ", " << response.daqvalue3()[x] << ", " << response.daqvalue4()[x] << ", " << response.daqvalue5()[x] << ", " << response.daqvalue6()[x] << ", " << response.daqvalue7()[x] << endl;
-		
+		//cout << "DMM Value: " << response.dmmvalue()[x] << ", DAQ Values: " << response.daqvalue0()[x] << ", " << response.daqvalue1()[x] << ", " << response.daqvalue2()[x] << ", " << response.daqvalue3()[x] << ", " << response.daqvalue4()[x] << ", " << response.daqvalue5()[x] << ", " << response.daqvalue6()[x] << ", " << response.daqvalue7()[x] << endl;
+				
 		while (measurementReader->Read(&response))
         {
             if (++x <= 48)
             {
-				cout << "DMM Value: " << response.dmmvalue()[x] << ", DAQ Values: " << response.daqvalue0()[x] << ", " << response.daqvalue1()[x] << ", " << response.daqvalue2()[x] << ", " << response.daqvalue3()[x] << ", " << response.daqvalue4()[x] << ", " << response.daqvalue5()[x] << ", " << response.daqvalue6()[x] << ", " << response.daqvalue7()[x] << endl;
+				//cout << "DMM Value: " << response.dmmvalue()[x] << ", DAQ Values: " << response.daqvalue0()[x] << ", " << response.daqvalue1()[x] << ", " << response.daqvalue2()[x] << ", " << response.daqvalue3()[x] << ", " << response.daqvalue4()[x] << ", " << response.daqvalue5()[x] << ", " << response.daqvalue6()[x] << ", " << response.daqvalue7()[x] << endl;
+				for (int y = 0; y < 10; ++y)
+				{
+					cout << "DMM Value: " << response.dmmvalue()[y] << ", DAQ Values: " << response.daqvalue0()[y] << ", " << response.daqvalue1()[y] << ", " << response.daqvalue2()[y] << ", " << response.daqvalue3()[y] << ", " << response.daqvalue4()[y] << ", " << response.daqvalue5()[y] << ", " << response.daqvalue6()[y] << ", " << response.daqvalue7()[y] << endl;
+				}
             }
 			else
 			{
