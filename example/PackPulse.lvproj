@@ -10,12 +10,13 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
+		<Item Name="Reset.vi" Type="VI" URL="../VIs/Reset.vi"/>
 		<Item Name="Dependencies" Type="Dependencies"/>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
-	<Item Name="NI-PXIe-8840Quad-Core-031036AB" Type="RT PXI Chassis">
-		<Property Name="alias.name" Type="Str">NI-PXIe-8840Quad-Core-031036AB</Property>
-		<Property Name="alias.value" Type="Str">169.254.17.129</Property>
+	<Item Name="NI-PXIe-8821-031F73D8" Type="RT PXI Chassis">
+		<Property Name="alias.name" Type="Str">NI-PXIe-8821-031F73D8</Property>
+		<Property Name="alias.value" Type="Str">192.168.1.11</Property>
 		<Property Name="CCSymbols" Type="Str">TARGET_TYPE,RT;OS,Linux;CPU,x64;</Property>
 		<Property Name="host.ResponsivenessCheckEnabled" Type="Bool">true</Property>
 		<Property Name="host.ResponsivenessCheckPingDelay" Type="UInt">5000</Property>
@@ -282,6 +283,7 @@ AddOutputFilter chunkFilter
 				<Item Name="NI_SystemLogging.lvlib" Type="Library" URL="/&lt;vilib&gt;/Utility/SystemLogging/NI_SystemLogging.lvlib"/>
 				<Item Name="NI_Real-Time Target Support.lvlib" Type="Library" URL="/&lt;vilib&gt;/NI_Real-Time Target Support.lvlib"/>
 				<Item Name="ni_emb.dll" Type="Document" URL="/&lt;vilib&gt;/ni_emb.dll"/>
+				<Item Name="DAQmx Reset Device.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/system.llb/DAQmx Reset Device.vi"/>
 			</Item>
 			<Item Name="Global Operations.ctl" Type="VI" URL="../VIs/Global Operations.ctl"/>
 			<Item Name="gprc-support.lvlib" Type="Library" URL="../../VIs/gprc-support.lvlib"/>
@@ -307,15 +309,15 @@ AddOutputFilter chunkFilter
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="My Package" Type="{CED73189-3D7D-4B2F-B6C9-EA03FBC59E14}">
-				<Property Name="IPK_lastBuiltPackage" Type="Str">packpulse_1.0.0-21_x64.ipk</Property>
+				<Property Name="IPK_lastBuiltPackage" Type="Str">packpulse_1.0.0-23_x64.ipk</Property>
 				<Property Name="IPK_startup.Restart" Type="Bool">true</Property>
 				<Property Name="IPK_startup.Target.Child" Type="Str">{63DF021A-3CC7-4C71-8872-88D0F1965E58}</Property>
 				<Property Name="IPK_startup.Target.Destination" Type="Str">root_0</Property>
-				<Property Name="IPK_startup.Target.Source" Type="Ref">/NI-PXIe-8840Quad-Core-031036AB/Build Specifications/My Real-Time Application</Property>
+				<Property Name="IPK_startup.Target.Source" Type="Ref">/NI-PXIe-8821-031F73D8/Build Specifications/My Real-Time Application</Property>
 				<Property Name="PKG_actions.Count" Type="Int">0</Property>
 				<Property Name="PKG_autoIncrementBuild" Type="Bool">true</Property>
 				<Property Name="PKG_autoSelectDeps" Type="Bool">false</Property>
-				<Property Name="PKG_buildNumber" Type="Int">22</Property>
+				<Property Name="PKG_buildNumber" Type="Int">24</Property>
 				<Property Name="PKG_buildSpecName" Type="Str">My Package</Property>
 				<Property Name="PKG_dependencies.Count" Type="Int">0</Property>
 				<Property Name="PKG_description" Type="Str">This is a PoC for the PackPulse Tester</Property>
@@ -335,10 +337,10 @@ AddOutputFilter chunkFilter
 				<Property Name="PKG_shortcuts.Count" Type="Int">0</Property>
 				<Property Name="PKG_sources.Count" Type="Int">2</Property>
 				<Property Name="PKG_sources[0].Destination" Type="Str">root_0</Property>
-				<Property Name="PKG_sources[0].ID" Type="Ref">/NI-PXIe-8840Quad-Core-031036AB/Build Specifications/My Real-Time Application</Property>
+				<Property Name="PKG_sources[0].ID" Type="Ref">/NI-PXIe-8821-031F73D8/Build Specifications/My Real-Time Application</Property>
 				<Property Name="PKG_sources[0].Type" Type="Str">RTEXE Build</Property>
 				<Property Name="PKG_sources[1].Destination" Type="Str">root_3</Property>
-				<Property Name="PKG_sources[1].ID" Type="Ref">/NI-PXIe-8840Quad-Core-031036AB/liblabview_grpc_server.so</Property>
+				<Property Name="PKG_sources[1].ID" Type="Ref">/NI-PXIe-8821-031F73D8/liblabview_grpc_server.so</Property>
 				<Property Name="PKG_sources[1].Type" Type="Str">File</Property>
 				<Property Name="PKG_synopsis" Type="Str">PackPulse</Property>
 				<Property Name="PKG_version" Type="Str">1.0.0</Property>
@@ -359,7 +361,7 @@ AddOutputFilter chunkFilter
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{293DB03F-0774-4260-AC2D-DA1AAED5F3CD}</Property>
 				<Property Name="Bld_targetDestDir" Type="Path">/home/lvuser/natinst/bin</Property>
-				<Property Name="Bld_version.build" Type="Int">32</Property>
+				<Property Name="Bld_version.build" Type="Int">34</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">startup.rtexe</Property>
 				<Property Name="Destination[0].path" Type="Path">/home/lvuser/natinst/bin/startup.rtexe</Property>
@@ -373,11 +375,11 @@ AddOutputFilter chunkFilter
 				<Property Name="Source[0].itemID" Type="Str">{CAEBFF97-1530-4FB3-A641-6F5299C87560}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[1].itemID" Type="Ref">/NI-PXIe-8840Quad-Core-031036AB/RTExampleQueryServer.vi</Property>
+				<Property Name="Source[1].itemID" Type="Ref">/NI-PXIe-8821-031F73D8/RTExampleQueryServer.vi</Property>
 				<Property Name="Source[1].sourceInclusion" Type="Str">TopLevel</Property>
 				<Property Name="Source[1].type" Type="Str">VI</Property>
 				<Property Name="Source[2].destinationIndex" Type="Int">1</Property>
-				<Property Name="Source[2].itemID" Type="Ref">/NI-PXIe-8840Quad-Core-031036AB/Asynchronous Stream 4310 DMM.vi</Property>
+				<Property Name="Source[2].itemID" Type="Ref">/NI-PXIe-8821-031F73D8/Asynchronous Stream 4310 DMM.vi</Property>
 				<Property Name="Source[2].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[2].type" Type="Str">VI</Property>
 				<Property Name="SourceCount" Type="Int">3</Property>
