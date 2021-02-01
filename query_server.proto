@@ -49,17 +49,17 @@ message AnalogInputRequest {
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 message AnalogInputData {
-  repeated float DMMValue = 1;
-  repeated float DAQValue0 = 2;
-  repeated float DAQValue1 = 3;
-  repeated float DAQValue2 = 4;
-  repeated float DAQValue3 = 5;
-  repeated float DAQValue4 = 6;
-  repeated float DAQValue5 = 7;
-  repeated float DAQValue6 = 8;
-  repeated float DAQValue7 = 9;
+  repeated double DMMValue = 1;
+  repeated double DAQValue0 = 2;
+  repeated double DAQValue1 = 3;
+  repeated double DAQValue2 = 4;
+  repeated double DAQValue3 = 5;
+  repeated double DAQValue4 = 6;
+  repeated double DAQValue5 = 7;
+  repeated double DAQValue6 = 8;
+  repeated double DAQValue7 = 9;
   string t0 = 10;
-  float dt = 11;
+  double dt = 11;
   bool errorstatus = 12;
   int32 errorcode = 13;
   string errorsource = 14;
