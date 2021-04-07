@@ -79,7 +79,11 @@ enum class LVMessageMetadataType
     DoubleValue,
     BoolValue,
     StringValue,
-    MessageValue
+    MessageValue,
+    Int64Value,
+    UInt32Value,
+    UInt64Value,
+    EnumValue
 };
 
 //---------------------------------------------------------------------
@@ -117,8 +121,7 @@ public:
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 #ifdef _PS_4
-#pragma pack push
-#pragma pack(1)
+#pragma pack (push, 1)
 #endif
 struct LVMesageElementMetadata
 {
@@ -128,7 +131,7 @@ struct LVMesageElementMetadata
     bool isRepeated;
 };
 #ifdef _PS_4
-#pragma pack pop
+#pragma pack (pop)
 #endif
 
 //---------------------------------------------------------------------
@@ -287,6 +290,66 @@ public:
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+class LVUInt32MessageValue : public LVMessageValue
+{
+public:
+    LVUInt32MessageValue(int protobufId, uint32_t value);
+
+public:
+    uint32_t _value;    
+
+    void* RawValue() override { return &_value; };
+    size_t ByteSizeLong() override;
+    google::protobuf::uint8* Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const override;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class LVEnumMessageValue : public LVMessageValue
+{
+public:
+    LVEnumMessageValue(int protobufId, int value);
+
+public:
+    int _value;    
+
+    void* RawValue() override { return &_value; };
+    size_t ByteSizeLong() override;
+    google::protobuf::uint8* Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const override;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class LVInt64MessageValue : public LVMessageValue
+{
+public:
+    LVInt64MessageValue(int protobufId, int64_t value);
+
+public:
+    int64_t _value;    
+
+    void* RawValue() override { return &_value; };
+    size_t ByteSizeLong() override;
+    google::protobuf::uint8* Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const override;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class LVUInt64MessageValue : public LVMessageValue
+{
+public:
+    LVUInt64MessageValue(int protobufId, uint64_t value);
+
+public:
+    uint64_t _value;    
+
+    void* RawValue() override { return &_value; };
+    size_t ByteSizeLong() override;
+    google::protobuf::uint8* Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const override;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 class LVRepeatedInt32MessageValue : public LVMessageValue
 {
 public:
@@ -294,6 +357,78 @@ public:
 
 public:
     google::protobuf::RepeatedField<int> _value;    
+
+    void* RawValue() override { return &_value; };
+    size_t ByteSizeLong() override;
+    google::protobuf::uint8* Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const override;
+
+private:
+    int _cachedSize;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class LVRepeatedUInt32MessageValue : public LVMessageValue
+{
+public:
+    LVRepeatedUInt32MessageValue(int protobufId);
+
+public:
+    google::protobuf::RepeatedField<uint32_t> _value;    
+
+    void* RawValue() override { return &_value; };
+    size_t ByteSizeLong() override;
+    google::protobuf::uint8* Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const override;
+
+private:
+    int _cachedSize;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class LVRepeatedEnumMessageValue : public LVMessageValue
+{
+public:
+    LVRepeatedEnumMessageValue(int protobufId);
+
+public:
+    google::protobuf::RepeatedField<int> _value;    
+
+    void* RawValue() override { return &_value; };
+    size_t ByteSizeLong() override;
+    google::protobuf::uint8* Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const override;
+
+private:
+    int _cachedSize;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class LVRepeatedInt64MessageValue : public LVMessageValue
+{
+public:
+    LVRepeatedInt64MessageValue(int protobufId);
+
+public:
+    google::protobuf::RepeatedField<int64_t> _value;    
+
+    void* RawValue() override { return &_value; };
+    size_t ByteSizeLong() override;
+    google::protobuf::uint8* Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const override;
+
+private:
+    int _cachedSize;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class LVRepeatedUInt64MessageValue : public LVMessageValue
+{
+public:
+    LVRepeatedUInt64MessageValue(int protobufId);
+
+public:
+    google::protobuf::RepeatedField<uint64_t> _value;    
 
     void* RawValue() override { return &_value; };
     size_t ByteSizeLong() override;
@@ -403,6 +538,10 @@ private:
 
     const char *ParseBoolean(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
     const char *ParseInt32(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
+    const char *ParseUInt32(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
+    const char *ParseEnum(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
+    const char *ParseInt64(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
+    const char *ParseUInt64(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
     const char *ParseFloat(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
     const char *ParseDouble(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
     const char *ParseString(unsigned int tag, const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx);
@@ -449,6 +588,7 @@ struct LVEventData
 class LabVIEWgRPCServer : public IMessageElementMetadataOwner
 {
 public:
+    LabVIEWgRPCServer();
     int Run(string address, string serverCertificatePath, string serverKeyPath);
     void StopServer();
     void RegisterMetadata(std::shared_ptr<MessageMetadata> requestMetadata);
@@ -465,6 +605,7 @@ private:
     map<string, shared_ptr<MessageMetadata>> _registeredMessageMetadata;
     unique_ptr<grpc::AsyncGenericService> _rpcService;
     std::future<void> _runFuture;
+    bool _shutdown;
 
 private:
     void FinalizeMetadata();
@@ -509,13 +650,35 @@ private:
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-class CallData
+class CallDataBase
+{
+public:
+    virtual void Proceed(bool ok) = 0;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class CallFinishedData : CallDataBase
+{
+public:
+    CallFinishedData(CallData* callData);
+    void Proceed(bool ok) override;
+
+private:
+    CallData* _call;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class CallData : public CallDataBase
 {
 public:
     CallData(LabVIEWgRPCServer* server, grpc::AsyncGenericService* service, grpc::ServerCompletionQueue* cq);
-    void Proceed();
-    void Write();
+    void Proceed(bool ok) override;
+    bool Write();
     void Finish();
+    bool IsCancelled();
+    void CallFinished();
 
 private:
     bool ParseFromByteBuffer(const grpc::ByteBuffer& buffer, grpc::protobuf::Message& message);
@@ -533,6 +696,7 @@ private:
     std::shared_ptr<GenericMethodData> _methodData;
     std::shared_ptr<LVMessage> _request;
     std::shared_ptr<LVMessage> _response;
+    bool _cancelled;
 
 
     enum class CallStatus
@@ -541,6 +705,7 @@ private:
         Read,
         Writing,
         Process,
+        PendingFinish,
         Finish
     };
     CallStatus _status;

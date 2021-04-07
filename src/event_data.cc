@@ -14,9 +14,10 @@ CallData::CallData(LabVIEWgRPCServer* server, grpc::AsyncGenericService *service
     _cq(cq),
     _stream(&_ctx),
     _status(CallStatus::Create),
-    _writeSemaphore(0)
+    _writeSemaphore(0),
+    _cancelled(false)
 {
-    Proceed();
+    Proceed(true);
 }
 
 //---------------------------------------------------------------------
@@ -47,27 +48,79 @@ std::unique_ptr<grpc::ByteBuffer> CallData::SerializeToByteBuffer(
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-void CallData::Write()
+CallFinishedData::CallFinishedData(CallData* callData)
 {
+    _call = callData;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+void CallFinishedData::Proceed(bool ok)
+{
+    _call->CallFinished();    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+bool CallData::Write()
+{
+    if (IsCancelled())
+    {
+        return false;
+    }
     auto wb = SerializeToByteBuffer(*_response);
     grpc::WriteOptions options;
     _status = CallStatus::Writing;
     _stream.Write(*wb, this);
     _writeSemaphore.wait();
+    if (IsCancelled())
+    {
+        return false;
+    }
+    return true;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+void CallData::CallFinished()
+{
+    _cancelled = _ctx.IsCancelled();      
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 void CallData::Finish()
 {
-    _status = CallStatus::Finish;
-    _stream.Finish(grpc::Status::OK, this);
+    if (_status == CallStatus::PendingFinish)
+    {
+        _status = CallStatus::Finish;
+        Proceed(false);
+    }
+    else
+    {
+        _status = CallStatus::Finish;
+        _stream.Finish(grpc::Status::OK, this);
+    }
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-void CallData::Proceed()
+bool CallData::IsCancelled()
 {
+    return _cancelled;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+void CallData::Proceed(bool ok)
+{
+    if (!ok)
+    {
+        if (_status != CallStatus::Finish)
+        {
+            _status = CallStatus::PendingFinish;
+        }
+    }
     if (_status == CallStatus::Create)
     {
         // As part of the initial CREATE state, we *request* that the system
@@ -76,7 +129,7 @@ void CallData::Proceed()
         // instances can serve different requests concurrently), in this case
         // the memory address of this CallData instance.
         _service->RequestCall(&_ctx, &_stream, _cq, _cq, this);
-        // Make this instance progress to the PROCESS state.
+        _ctx.AsyncNotifyWhenDone(new CallFinishedData(this));
         _status = CallStatus::Read;
     }
     else if (_status == CallStatus::Read)
@@ -113,6 +166,9 @@ void CallData::Proceed()
     else if (_status == CallStatus::Writing)
     {
         _writeSemaphore.notify();
+    }
+    else if (_status == CallStatus::PendingFinish)
+    {        
     }
     else
     {
@@ -194,6 +250,18 @@ const char *LVMessage::_InternalParse(const char *ptr, google::protobuf::interna
             case LVMessageMetadataType::MessageValue:
                 ptr = ParseNestedMessage(tag, *fieldInfo, index, ptr, ctx);
                 break;
+            case LVMessageMetadataType::Int64Value:
+                ptr = ParseInt64(*fieldInfo, index, ptr, ctx);
+                break;
+            case LVMessageMetadataType::UInt32Value:
+                ptr = ParseUInt32(*fieldInfo, index, ptr, ctx);
+                break;
+            case LVMessageMetadataType::UInt64Value:
+                ptr = ParseUInt64(*fieldInfo, index, ptr, ctx);
+                break;
+            case LVMessageMetadataType::EnumValue:
+                ptr = ParseEnum(*fieldInfo, index, ptr, ctx);
+                break;
         }
     }
     return ptr;
@@ -234,6 +302,86 @@ const char *LVMessage::ParseInt32(const MessageElementMetadata& fieldInfo, uint3
         int32_t result;
         ptr = google::protobuf::internal::ReadINT32(ptr, &result);
         auto v = std::make_shared<LVInt32MessageValue>(index, result);
+        _values.emplace(index, v);
+    }
+    return ptr;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+const char *LVMessage::ParseUInt32(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx)
+{    
+    if (fieldInfo.isRepeated)
+    {
+        auto v = std::make_shared<LVRepeatedUInt32MessageValue>(index);
+        ptr = google::protobuf::internal::PackedUInt32Parser(&(v->_value), ptr, ctx);
+        _values.emplace(index, v);
+    }
+    else
+    {
+        uint32_t result;
+        ptr = google::protobuf::internal::ReadUINT32(ptr, &result);
+        auto v = std::make_shared<LVUInt32MessageValue>(index, result);
+        _values.emplace(index, v);
+    }
+    return ptr;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+const char *LVMessage::ParseEnum(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx)
+{    
+    if (fieldInfo.isRepeated)
+    {
+        auto v = std::make_shared<LVRepeatedEnumMessageValue>(index);
+        ptr = google::protobuf::internal::PackedEnumParser(&(v->_value), ptr, ctx);
+        _values.emplace(index, v);
+    }
+    else
+    {
+        int32_t result;
+        ptr = google::protobuf::internal::ReadENUM(ptr, &result);
+        auto v = std::make_shared<LVEnumMessageValue>(index, result);
+        _values.emplace(index, v);
+    }
+    return ptr;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+const char *LVMessage::ParseInt64(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx)
+{    
+    if (fieldInfo.isRepeated)
+    {
+        auto v = std::make_shared<LVRepeatedInt64MessageValue>(index);
+        ptr = google::protobuf::internal::PackedInt64Parser(&(v->_value), ptr, ctx);
+        _values.emplace(index, v);
+    }
+    else
+    {
+        int64_t result;
+        ptr = google::protobuf::internal::ReadINT64(ptr, &result);
+        auto v = std::make_shared<LVInt64MessageValue>(index, result);
+        _values.emplace(index, v);
+    }
+    return ptr;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+const char *LVMessage::ParseUInt64(const MessageElementMetadata& fieldInfo, uint32_t index, const char *ptr, google::protobuf::internal::ParseContext *ctx)
+{    
+    if (fieldInfo.isRepeated)
+    {
+        auto v = std::make_shared<LVRepeatedUInt64MessageValue>(index);
+        ptr = google::protobuf::internal::PackedUInt64Parser(&(v->_value), ptr, ctx);
+        _values.emplace(index, v);
+    }
+    else
+    {
+        uint64_t result;
+        ptr = google::protobuf::internal::ReadUINT64(ptr, &result);
+        auto v = std::make_shared<LVUInt64MessageValue>(index, result);
         _values.emplace(index, v);
     }
     return ptr;
@@ -673,6 +821,98 @@ google::protobuf::uint8* LVInt32MessageValue::Serialize(google::protobuf::uint8*
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+LVUInt32MessageValue::LVUInt32MessageValue(int protobufId, uint32_t value) :
+    LVMessageValue(protobufId),
+    _value(value)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+size_t LVUInt32MessageValue::ByteSizeLong()
+{
+    return 1 + google::protobuf::internal::WireFormatLite::UInt32Size(_value);
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+google::protobuf::uint8* LVUInt32MessageValue::Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const
+{    
+    target = stream->EnsureSpace(target);
+    return google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(_protobufId, _value, target);
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LVEnumMessageValue::LVEnumMessageValue(int protobufId, int value) :
+    LVMessageValue(protobufId),
+    _value(value)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+size_t LVEnumMessageValue::ByteSizeLong()
+{
+    return 1 + google::protobuf::internal::WireFormatLite::EnumSize(_value);
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+google::protobuf::uint8* LVEnumMessageValue::Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const
+{    
+    target = stream->EnsureSpace(target);
+    return google::protobuf::internal::WireFormatLite::WriteEnumToArray(_protobufId, _value, target);
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LVInt64MessageValue::LVInt64MessageValue(int protobufId, int64_t value) :
+    LVMessageValue(protobufId),
+    _value(value)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+size_t LVInt64MessageValue::ByteSizeLong()
+{
+    return 1 + google::protobuf::internal::WireFormatLite::Int64Size(_value);
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+google::protobuf::uint8* LVInt64MessageValue::Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const
+{    
+    target = stream->EnsureSpace(target);
+    return google::protobuf::internal::WireFormatLite::WriteInt64ToArray(_protobufId, _value, target);
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LVUInt64MessageValue::LVUInt64MessageValue(int protobufId, uint64_t value) :
+    LVMessageValue(protobufId),
+    _value(value)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+size_t LVUInt64MessageValue::ByteSizeLong()
+{
+    return 1 + google::protobuf::internal::WireFormatLite::UInt64Size(_value);
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+google::protobuf::uint8* LVUInt64MessageValue::Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const
+{    
+    target = stream->EnsureSpace(target);
+    return google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(_protobufId, _value, target);
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 LVRepeatedInt32MessageValue::LVRepeatedInt32MessageValue(int protobufId) :
     LVMessageValue(protobufId)
 {    
@@ -700,6 +940,138 @@ google::protobuf::uint8* LVRepeatedInt32MessageValue::Serialize(google::protobuf
     if (_cachedSize > 0)
     {
         target = stream->WriteInt32Packed(_protobufId, _value, _cachedSize, target);
+    }
+    return target;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LVRepeatedUInt32MessageValue::LVRepeatedUInt32MessageValue(int protobufId) :
+    LVMessageValue(protobufId)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+size_t LVRepeatedUInt32MessageValue::ByteSizeLong()
+{    
+    size_t totalSize = 0;
+    size_t dataSize = google::protobuf::internal::WireFormatLite::UInt32Size(_value);
+    if (dataSize > 0)
+    {
+        totalSize += 1 + google::protobuf::internal::WireFormatLite::UInt32Size(static_cast<google::protobuf::int32>(dataSize));
+    }
+    _cachedSize = google::protobuf::internal::ToCachedSize(dataSize);
+    totalSize += dataSize;
+    return totalSize;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+google::protobuf::uint8* LVRepeatedUInt32MessageValue::Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const
+{
+    if (_cachedSize > 0)
+    {
+        target = stream->WriteUInt32Packed(_protobufId, _value, _cachedSize, target);
+    }
+    return target;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LVRepeatedEnumMessageValue::LVRepeatedEnumMessageValue(int protobufId) :
+    LVMessageValue(protobufId)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+size_t LVRepeatedEnumMessageValue::ByteSizeLong()
+{    
+    size_t totalSize = 0;
+    size_t dataSize = google::protobuf::internal::WireFormatLite::EnumSize(_value);
+    if (dataSize > 0)
+    {
+        totalSize += 1 + google::protobuf::internal::WireFormatLite::EnumSize(static_cast<google::protobuf::int32>(dataSize));
+    }
+    _cachedSize = google::protobuf::internal::ToCachedSize(dataSize);
+    totalSize += dataSize;
+    return totalSize;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+google::protobuf::uint8* LVRepeatedEnumMessageValue::Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const
+{
+    if (_cachedSize > 0)
+    {
+        target = stream->WriteEnumPacked(_protobufId, _value, _cachedSize, target);
+    }
+    return target;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LVRepeatedInt64MessageValue::LVRepeatedInt64MessageValue(int protobufId) :
+    LVMessageValue(protobufId)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+size_t LVRepeatedInt64MessageValue::ByteSizeLong()
+{    
+    size_t totalSize = 0;
+    size_t dataSize = google::protobuf::internal::WireFormatLite::Int64Size(_value);
+    if (dataSize > 0)
+    {
+        totalSize += 1 + google::protobuf::internal::WireFormatLite::Int64Size(static_cast<google::protobuf::int32>(dataSize));
+    }
+    _cachedSize = google::protobuf::internal::ToCachedSize(dataSize);
+    totalSize += dataSize;
+    return totalSize;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+google::protobuf::uint8* LVRepeatedInt64MessageValue::Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const
+{
+    if (_cachedSize > 0)
+    {
+        target = stream->WriteInt64Packed(_protobufId, _value, _cachedSize, target);
+    }
+    return target;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LVRepeatedUInt64MessageValue::LVRepeatedUInt64MessageValue(int protobufId) :
+    LVMessageValue(protobufId)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+size_t LVRepeatedUInt64MessageValue::ByteSizeLong()
+{    
+    size_t totalSize = 0;
+    size_t dataSize = google::protobuf::internal::WireFormatLite::UInt64Size(_value);
+    if (dataSize > 0)
+    {
+        totalSize += 1 + google::protobuf::internal::WireFormatLite::UInt64Size(static_cast<google::protobuf::int32>(dataSize));
+    }
+    _cachedSize = google::protobuf::internal::ToCachedSize(dataSize);
+    totalSize += dataSize;
+    return totalSize;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+google::protobuf::uint8* LVRepeatedUInt64MessageValue::Serialize(google::protobuf::uint8* target, google::protobuf::io::EpsCopyOutputStream* stream) const
+{
+    if (_cachedSize > 0)
+    {
+        target = stream->WriteUInt64Packed(_protobufId, _value, _cachedSize, target);
     }
     return target;
 }

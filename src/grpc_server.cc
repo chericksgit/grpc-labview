@@ -21,6 +21,13 @@ using namespace std;
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+LabVIEWgRPCServer::LabVIEWgRPCServer() :
+    _shutdown(false)
+{    
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 void LabVIEWgRPCServer::RegisterMetadata(std::shared_ptr<MessageMetadata> requestMetadata)
 {
     lock_guard<mutex> lock(_mutex);
@@ -87,9 +94,13 @@ int ClusterElementSize(LVMessageMetadataType type, bool repeated)
     {
     case LVMessageMetadataType::BoolValue:
         return 1;
+    case LVMessageMetadataType::EnumValue:
     case LVMessageMetadataType::Int32Value:
+    case LVMessageMetadataType::UInt32Value:
     case LVMessageMetadataType::FloatValue:
         return 4;
+    case LVMessageMetadataType::Int64Value:
+    case LVMessageMetadataType::UInt64Value:
     case LVMessageMetadataType::DoubleValue:
     case LVMessageMetadataType::StringValue:
     case LVMessageMetadataType::MessageValue:
@@ -105,11 +116,15 @@ int ClusterElementSize(LVMessageMetadataType type, bool repeated)
     case LVMessageMetadataType::BoolValue:
         return 1;
     case LVMessageMetadataType::Int32Value:
+    case LVMessageMetadataType::UInt32Value:
+    case LVMessageMetadataType::EnumValue:
     case LVMessageMetadataType::FloatValue:
         return 4;
     case LVMessageMetadataType::StringValue:
     case LVMessageMetadataType::MessageValue:
         return 4;
+    case LVMessageMetadataType::Int64Value:
+    case LVMessageMetadataType::UInt64Value:
     case LVMessageMetadataType::DoubleValue:
         return 8;
     }
@@ -228,11 +243,11 @@ void LabVIEWgRPCServer::HandleRpcs(grpc::ServerCompletionQueue *cq)
         // event is uniquely identified by its tag, which in this case is the
         // memory address of a CallData instance.
         cq->Next(&tag, &ok);
-        if (!ok)
+        static_cast<CallDataBase*>(tag)->Proceed(ok);
+        if (_shutdown)
         {
             break;
         }
-        static_cast<CallData*>(tag)->Proceed();
     }
 }
 
@@ -306,6 +321,7 @@ void LabVIEWgRPCServer::RunServer(
 //---------------------------------------------------------------------
 void LabVIEWgRPCServer::StopServer()
 {
+    _shutdown = true;
     if (_server != nullptr)
     {
         _server->Shutdown();
