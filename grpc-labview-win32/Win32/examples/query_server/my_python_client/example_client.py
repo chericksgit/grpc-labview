@@ -2,7 +2,7 @@ import grpc
 import measurement_service_pb2 as ms
 import measurement_service_pb2_grpc as msgrpc
 
-serverAddress = "localhost:50051"
+serverAddress = "169.254.184.38:50051"
 channel = grpc.insecure_channel(serverAddress)
 measurementServer = msgrpc.MeasurementServiceStub(channel)
 

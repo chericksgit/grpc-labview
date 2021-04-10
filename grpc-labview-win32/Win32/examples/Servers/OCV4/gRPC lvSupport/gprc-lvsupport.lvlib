@@ -11,6 +11,7 @@
 </Property>
 	<Item Name="dlls" Type="Folder">
 		<Item Name="labview_grpc_server.dll" Type="Document" URL="../dlls/labview_grpc_server.dll"/>
+		<Item Name="liblabview_grpc_server.so" Type="Document" URL="../../../../query_server/gRPC lvSupport/dlls/liblabview_grpc_server.so"/>
 	</Item>
 	<Item Name="Server API" Type="Folder">
 		<Item Name="Message Requests" Type="Folder">
