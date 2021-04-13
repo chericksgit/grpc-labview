@@ -3,6 +3,7 @@ import hvc_measurement_service_pb2 as ms
 import hvc_measurement_service_pb2_grpc as msgrpc
  
 serverAddress = "169.254.184.38:50051"
+#192.168.1.x (prefer 20-30) (not 5, 10, 60)
 # serverAddress = "localhost:50051"
 channel = grpc.insecure_channel(serverAddress)
 measurementServer = msgrpc.MeasurementServiceStub(channel)
@@ -25,19 +26,19 @@ dmm_reset_response = measurementServer.ResetDMM(ms.DMMResetRequest())
 print (dmm_reset_response)
 print("")
 
-# # Open DMM Session
-# dmm_open_session_response = measurementServer.OpenDMMSession(ms.DMMOpenSessionRequest(DMMName = "DMM"))
-# print ("DMM Open Session")
-# print (dmm_open_session_response)
-# print("")
+# Open DMM Session
+dmm_open_session_response = measurementServer.OpenDMMSession(ms.DMMOpenSessionRequest(DMMName = "DMM"))
+print ("DMM Open Session")
+print (dmm_open_session_response)
+print("")
 
-# # DMM Self Calibration
-# # Must have session open to the DMM
-# print ("DMM Self Calibration")
-# print("Performing DMM Self Calibration - this may take a minute or two...")
-# dmm_self_cal_response = measurementServer.SelfCalibrateDMM(ms.DMMSelfCalRequest())
-# print (dmm_self_cal_response)
-# print("")
+# DMM Self Calibration
+# Must have session open to the DMM
+print ("DMM Self Calibration")
+print("Performing DMM Self Calibration - this may take a minute or two...")
+dmm_self_cal_response = measurementServer.SelfCalibrateDMM(ms.DMMSelfCalRequest())
+print (dmm_self_cal_response)
+print("")
 
 # Open DMM Session
 dmm_open_session_response = measurementServer.OpenDMMSession(ms.DMMOpenSessionRequest(DMMName = "DMM"))
@@ -235,6 +236,8 @@ print (ni2576_open_session_response)
 print("")
 
 # Close NI 2576 Channel
+# Channel1 = "ch0" (chx)
+# Channel2 = "com0"
 ni2576_close_channel_response = measurementServer.CloseNI2576MUXChannel(ms.NI2576MUXCloseChannelRequest(
     Channel1 = "ch0",
     Channel2 = "com0"
@@ -244,6 +247,8 @@ print (ni2576_close_channel_response)
 print ("")
 
 # Open NI 2576 Channel
+# Channel1 = "ch0" (chx)
+# Channel2 = "com0"
 ni2576_open_channel_response = measurementServer.OpenNI2576MUXChannel(ms.NI2576MUXOpenChannelRequest(
     Channel1 = "ch0",
     Channel2 = "com0"
