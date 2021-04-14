@@ -15,7 +15,7 @@
 	</Item>
 	<Item Name="NI-PXIe-8821-0320C16A" Type="RT PXI Chassis">
 		<Property Name="alias.name" Type="Str">NI-PXIe-8821-0320C16A</Property>
-		<Property Name="alias.value" Type="Str">169.254.184.38</Property>
+		<Property Name="alias.value" Type="Str">192.168.1.20</Property>
 		<Property Name="CCSymbols" Type="Str">TARGET_TYPE,RT;OS,Linux;CPU,x64;</Property>
 		<Property Name="host.ResponsivenessCheckEnabled" Type="Bool">true</Property>
 		<Property Name="host.ResponsivenessCheckPingDelay" Type="UInt">5000</Property>

@@ -3,7 +3,7 @@ import grpc
 import pwm_measurement_service_pb2 as ms
 import pwm_measurement_service_pb2_grpc as msgrpc
  
-serverAddress = "169.254.184.38:50051"
+serverAddress = "192.168.1.20:50051"
 #192.168.1.x (prefer 20-30) (not 5, 10, 60)
 # serverAddress = "localhost:50051"
 channel = grpc.insecure_channel(serverAddress)
