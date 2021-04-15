@@ -116,19 +116,19 @@ print ("SMU Open Session")
 print (smu_open_session_response)
 print("")
 
-# SMU Self Calibration
-# Must have session open to the SMU
-print ("SMU Self Calibration")
-print("Performing SMU Self Calibration - this may take a few seconds...")
-smu_self_cal_response = measurementServer.SelfCalibrateSMU(ms.SMUSelfCalRequest())
-print (smu_self_cal_response)
-print("")
+# # SMU Self Calibration
+# # Must have session open to the SMU
+# print ("SMU Self Calibration")
+# print("Performing SMU Self Calibration - this may take a few seconds...")
+# smu_self_cal_response = measurementServer.SelfCalibrateSMU(ms.SMUSelfCalRequest())
+# print (smu_self_cal_response)
+# print("")
 
-# Open SMU Session
-smu_open_session_response = measurementServer.OpenSMUSession(ms.SMUOpenSessionRequest(SMUName = "SMU"))
-print ("SMU Open Session")
-print (smu_open_session_response)
-print("")
+# # Open SMU Session
+# smu_open_session_response = measurementServer.OpenSMUSession(ms.SMUOpenSessionRequest(SMUName = "SMU"))
+# print ("SMU Open Session")
+# print (smu_open_session_response)
+# print("")
 
 # Configure SMU
 # SMUChannels = "0" 
@@ -148,12 +148,12 @@ smu_config_response = measurementServer.ConfigureSMU(ms.SMUConfigRequest(
     SMUSourceMode = 1020,
     SMUOutputFunction = 1007,
     SMUSourceTransientResponse = 1038,
-    SMUCurrent = 0.020,
-    SMUCurrentLevelRange = 0.020,
+    SMUCurrent = -1,
+    SMUCurrentLevelRange = 3,
     SMUMeasurementSense = 1008,
     SMUMeasurementApertureTime = 0.033,
     SMUSourceAdvancedSourceDelay = 0.001,
-    SMUVoltage = 6,
+    SMUVoltage = 12,
     SMUMeasurementAdvancedDCNoiseRejection = 1044))
 print("Channels: " + str(smu_config_response.SMUChannels))
 print("Source Mode: " + str(smu_config_response.SMUSourceMode))
@@ -177,60 +177,60 @@ smu_current_result = measurementServer.PerformSMUCurrentMeasurement(ms.SMUCurren
 print("Perform SMU Current Measurement")
 print(smu_current_result)
 print("")
-time.sleep(1)
+time.sleep(10)
 
-# Disable SMU Output
-smu_disable_result = measurementServer.DisableSMUOutput(ms.SMUDisableRequest())
-print("Disable SMU Output")
-print(smu_disable_result)
-print("")
+# # Disable SMU Output
+# smu_disable_result = measurementServer.DisableSMUOutput(ms.SMUDisableRequest())
+# print("Disable SMU Output")
+# print(smu_disable_result)
+# print("")
 
-smu_config_response = measurementServer.ConfigureSMU(ms.SMUConfigRequest(
-    SMUChannels = "0",
-    SMUSourceMode = 1020,
-    SMUOutputFunction = 1007,
-    SMUSourceTransientResponse = 1038,
-    SMUCurrent = 0.020,
-    SMUCurrentLevelRange = 0.020,
-    SMUMeasurementSense = 1008,
-    SMUMeasurementApertureTime = 0.033,
-    SMUSourceAdvancedSourceDelay = 0.001,
-    SMUVoltage = 6,
-    SMUMeasurementAdvancedDCNoiseRejection = 1044))
-print("Channels: " + str(smu_config_response.SMUChannels))
-print("Source Mode: " + str(smu_config_response.SMUSourceMode))
-print("Output Function: " + str(smu_config_response.SMUOutputFunction))
-print("Source Transient Response: " + str(smu_config_response.SMUSourceTransientResponse))
-print("Current Level: " + str(smu_config_response.SMUCurrent))
-print("Current Level Range: " + str(smu_config_response.SMUCurrentLevelRange))
-print("Measurement Sense: " + str(smu_config_response.SMUMeasurementSense))
-print("Measurement Aperture Time: " + str(smu_config_response.SMUMeasurementApertureTime))
-print("Source Delay: " + str(smu_config_response.SMUSourceAdvancedSourceDelay))
-print("Voltage Level and Limit: " + str(smu_config_response.SMUVoltage))
-print("DC Noise Rejection: " + str(smu_config_response.SMUMeasurementAdvancedDCNoiseRejection))
-print("Error Code: " + str(smu_config_response.error.errCode))
-print("Error Message: " + str(smu_config_response.error.errMessage))
-print(smu_config_response.error)
-# print(smu_config_response)
-print("")
+# smu_config_response = measurementServer.ConfigureSMU(ms.SMUConfigRequest(
+#     SMUChannels = "0",
+#     SMUSourceMode = 1020,
+#     SMUOutputFunction = 1007,
+#     SMUSourceTransientResponse = 1038,
+#     SMUCurrent = 0.020,
+#     SMUCurrentLevelRange = 0.020,
+#     SMUMeasurementSense = 1008,
+#     SMUMeasurementApertureTime = 0.033,
+#     SMUSourceAdvancedSourceDelay = 0.001,
+#     SMUVoltage = 6,
+#     SMUMeasurementAdvancedDCNoiseRejection = 1044))
+# print("Channels: " + str(smu_config_response.SMUChannels))
+# print("Source Mode: " + str(smu_config_response.SMUSourceMode))
+# print("Output Function: " + str(smu_config_response.SMUOutputFunction))
+# print("Source Transient Response: " + str(smu_config_response.SMUSourceTransientResponse))
+# print("Current Level: " + str(smu_config_response.SMUCurrent))
+# print("Current Level Range: " + str(smu_config_response.SMUCurrentLevelRange))
+# print("Measurement Sense: " + str(smu_config_response.SMUMeasurementSense))
+# print("Measurement Aperture Time: " + str(smu_config_response.SMUMeasurementApertureTime))
+# print("Source Delay: " + str(smu_config_response.SMUSourceAdvancedSourceDelay))
+# print("Voltage Level and Limit: " + str(smu_config_response.SMUVoltage))
+# print("DC Noise Rejection: " + str(smu_config_response.SMUMeasurementAdvancedDCNoiseRejection))
+# print("Error Code: " + str(smu_config_response.error.errCode))
+# print("Error Message: " + str(smu_config_response.error.errMessage))
+# print(smu_config_response.error)
+# # print(smu_config_response)
+# print("")
+
+# # #Perform SMU Current Measurement
+# # smu_current_result = measurementServer.PerformSMUCurrentMeasurement(ms.SMUCurrentRequest())
+# # print("Perform SMU Current Measurement")
+# # print(smu_current_result)
+# # print("")
+
+# # Enable SMU Output
+# smu_enable_result = measurementServer.EnableSMUOutput(ms.SMUEnableRequest())
+# print("Enable SMU Output")
+# print(smu_enable_result)
+# print("")
 
 # #Perform SMU Current Measurement
 # smu_current_result = measurementServer.PerformSMUCurrentMeasurement(ms.SMUCurrentRequest())
 # print("Perform SMU Current Measurement")
 # print(smu_current_result)
 # print("")
-
-# Enable SMU Output
-smu_enable_result = measurementServer.EnableSMUOutput(ms.SMUEnableRequest())
-print("Enable SMU Output")
-print(smu_enable_result)
-print("")
-
-#Perform SMU Current Measurement
-smu_current_result = measurementServer.PerformSMUCurrentMeasurement(ms.SMUCurrentRequest())
-print("Perform SMU Current Measurement")
-print(smu_current_result)
-print("")
 
 # Close SMU Session
 smu_close_session_response = measurementServer.CloseSMUSession(ms.SMUCloseSessionRequest())

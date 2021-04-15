@@ -1,9 +1,9 @@
+import time
 import grpc
 import dio_measurement_service_pb2 as ms
 import dio_measurement_service_pb2_grpc as msgrpc
  
 serverAddress = "192.168.1.20:50051"
-#192.168.1.x (prefer 20-30) (not 5, 10, 60)
 # serverAddress = "localhost:50051"
 channel = grpc.insecure_channel(serverAddress)
 measurementServer = msgrpc.MeasurementServiceStub(channel)
@@ -13,11 +13,93 @@ uptime = measurementServer.Query(ms.QueryRequest(query = "Uptime"))
 print("Server Uptime: " + uptime.message)
 print("")
 
-# # Open PWM Session
-# pwm_open_session_response = measurementServer.OpenPWMSession(ms.PWMOpenSessionRequest(PWMlines = "6514/port4/line0"))
-# print ("PWM Open Session")
-# print (pwm_open_session_response)
+# # Open DI Session
+# di_open_session_response = measurementServer.OpenDISession(ms.DIOpenSessionRequest(
+#     DISessionName = "DISession1", 
+#     DIlines = "6514/port0/line0"))
+# print ("DI Open Session")
+# print (di_open_session_response)
 # print("")
+
+# # Read DI 
+# di_read_response = measurementServer.ReadDI(ms.ReadDIRequest(DIOSessionName = "DISession1"))
+# print ("DI Read")
+# print (di_read_response)
+# print("")
+
+# # Close DI Session
+# di_close_session_response = measurementServer.CloseDISession(ms.DICloseSessionRequest(DISessionName = "DISession1"))
+# print ("DI Close Session")
+# print (di_close_session_response)
+# print("")
+
+# Open DO Session
+do_open_session_response = measurementServer.OpenDOSession(ms.DOOpenSessionRequest(
+    DOSessionName = "DOSession1",
+    DOlines = "6514/port4/line0:5"))
+print ("DO Open Session")
+print (do_open_session_response)
+print("")
+
+
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DIOSessionName = "DOSession1",
+    DOData = [True, True, True, True, True, True]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(5)
+
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DIOSessionName = "DOSession1",
+    DOData = [False, False, False, False, False, False]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(5)
+
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DIOSessionName = "DOSession1",
+    DOData = [True, True, True, True, True, True]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(5)
+
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DIOSessionName = "DOSession1",
+    DOData = [False, False, False, False, False, False]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(5)
+
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DIOSessionName = "DOSession1",
+    DOData = [True, True, True, True, True, True]))
+print ("DO Write")
+print (do_write_response)
+print("")
+
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DIOSessionName = "DOSession1",
+    DOData = [False, False, False, False, False, False]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(5)
+
+# Close DO Session
+do_close_session_response = measurementServer.CloseDOSession(ms.DOCloseSessionRequest(DOSessionName = "DOSession1"))
+print ("DO Close Session")
+print (do_close_session_response)
+print("")
 
 # # Start PWM
 # # PWMInitialState = (True, False)
@@ -49,8 +131,4 @@ print("")
 # print (pwm_stop_response)
 # print("")
 
-# # Close PWM Session
-# pwm_close_session_response = measurementServer.ClosePWMSession(ms.PWMCloseSessionRequest())
-# print ("PWM Close Session")
-# print (pwm_close_session_response)
-# print("")
+

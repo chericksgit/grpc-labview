@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\032labview.measurementserviceB\022MeasurementServiceP\001\242\002\004LVMS',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x1d\x64io_measurement_service.proto\x12\x12measurementservice\"/\n\x08\x45rrorOut\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\x12\x12\n\nerrMessage\x18\x02 \x01(\t\"A\n\x15\x44IOOpenSessionRequest\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\x12\x10\n\x08\x44IOlines\x18\x02 \x01(\t\"]\n\x16\x44IOOpenSessionResponse\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\x12+\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\"\'\n\rReadDIRequest\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\"e\n\x0eReadDIResponse\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\x12\x0e\n\x06\x44IData\x18\x02 \x03(\x08\x12+\n\x05\x65rror\x18\x03 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\"8\n\x0eWriteDORequest\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\x12\x0e\n\x06\x44OData\x18\x02 \x03(\x08\"V\n\x0fWriteDOResponse\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\x12+\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\"0\n\x16\x44IOCloseSessionRequest\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\"F\n\x17\x44IOCloseSessionResponse\x12+\n\x05\x65rror\x18\x01 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\"3\n\rInvokeRequest\x12\x0f\n\x07\x63ommand\x18\x01 \x01(\t\x12\x11\n\tparameter\x18\x02 \x01(\t\" \n\x0eInvokeResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\"\x1d\n\x0cQueryRequest\x12\r\n\x05query\x18\x01 \x01(\t\"0\n\rQueryResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\x05\"(\n\x13RegistrationRequest\x12\x11\n\teventName\x18\x01 \x01(\t\"B\n\x0bServerEvent\x12\x11\n\teventData\x18\x01 \x01(\t\x12\x10\n\x08serverId\x18\x02 \x01(\x05\x12\x0e\n\x06status\x18\x03 \x01(\x05\x32\x93\x05\n\x12MeasurementService\x12Q\n\x06Invoke\x12!.measurementservice.InvokeRequest\x1a\".measurementservice.InvokeResponse\"\x00\x12N\n\x05Query\x12 .measurementservice.QueryRequest\x1a!.measurementservice.QueryResponse\"\x00\x12X\n\x08Register\x12\'.measurementservice.RegistrationRequest\x1a\x1f.measurementservice.ServerEvent\"\x00\x30\x01\x12i\n\x0eOpenDIOSession\x12).measurementservice.DIOOpenSessionRequest\x1a*.measurementservice.DIOOpenSessionResponse\"\x00\x12Q\n\x06ReadDI\x12!.measurementservice.ReadDIRequest\x1a\".measurementservice.ReadDIResponse\"\x00\x12T\n\x07WriteDO\x12\".measurementservice.WriteDORequest\x1a#.measurementservice.WriteDOResponse\"\x00\x12l\n\x0f\x43loseDIOSession\x12*.measurementservice.DIOCloseSessionRequest\x1a+.measurementservice.DIOCloseSessionResponse\"\x00\x42\x39\n\x1alabview.measurementserviceB\x12MeasurementServiceP\x01\xa2\x02\x04LVMSb\x06proto3'
+  serialized_pb=b'\n\x1d\x64io_measurement_service.proto\x12\x12measurementservice\"/\n\x08\x45rrorOut\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\x12\x12\n\nerrMessage\x18\x02 \x01(\t\">\n\x14\x44IOpenSessionRequest\x12\x15\n\rDISessionName\x18\x01 \x01(\t\x12\x0f\n\x07\x44Ilines\x18\x02 \x01(\t\"[\n\x15\x44IOpenSessionResponse\x12\x15\n\rDISessionName\x18\x01 \x01(\t\x12+\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\">\n\x14\x44OOpenSessionRequest\x12\x15\n\rDOSessionName\x18\x01 \x01(\t\x12\x0f\n\x07\x44Olines\x18\x02 \x01(\t\"[\n\x15\x44OOpenSessionResponse\x12\x15\n\rDOSessionName\x18\x01 \x01(\t\x12+\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\"\'\n\rReadDIRequest\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\"e\n\x0eReadDIResponse\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\x12\x0e\n\x06\x44IData\x18\x02 \x03(\x08\x12+\n\x05\x65rror\x18\x03 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\"8\n\x0eWriteDORequest\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\x12\x0e\n\x06\x44OData\x18\x02 \x03(\x08\"V\n\x0fWriteDOResponse\x12\x16\n\x0e\x44IOSessionName\x18\x01 \x01(\t\x12+\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\".\n\x15\x44ICloseSessionRequest\x12\x15\n\rDISessionName\x18\x01 \x01(\t\"E\n\x16\x44ICloseSessionResponse\x12+\n\x05\x65rror\x18\x01 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\".\n\x15\x44OCloseSessionRequest\x12\x15\n\rDOSessionName\x18\x01 \x01(\t\"E\n\x16\x44OCloseSessionResponse\x12+\n\x05\x65rror\x18\x01 \x01(\x0b\x32\x1c.measurementservice.ErrorOut\"3\n\rInvokeRequest\x12\x0f\n\x07\x63ommand\x18\x01 \x01(\t\x12\x11\n\tparameter\x18\x02 \x01(\t\" \n\x0eInvokeResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\"\x1d\n\x0cQueryRequest\x12\r\n\x05query\x18\x01 \x01(\t\"0\n\rQueryResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\x05\"(\n\x13RegistrationRequest\x12\x11\n\teventName\x18\x01 \x01(\t\"B\n\x0bServerEvent\x12\x11\n\teventData\x18\x01 \x01(\t\x12\x10\n\x08serverId\x18\x02 \x01(\x05\x12\x0e\n\x06status\x18\x03 \x01(\x05\x32\xe0\x06\n\x12MeasurementService\x12Q\n\x06Invoke\x12!.measurementservice.InvokeRequest\x1a\".measurementservice.InvokeResponse\"\x00\x12N\n\x05Query\x12 .measurementservice.QueryRequest\x1a!.measurementservice.QueryResponse\"\x00\x12X\n\x08Register\x12\'.measurementservice.RegistrationRequest\x1a\x1f.measurementservice.ServerEvent\"\x00\x30\x01\x12\x66\n\rOpenDISession\x12(.measurementservice.DIOpenSessionRequest\x1a).measurementservice.DIOpenSessionResponse\"\x00\x12\x66\n\rOpenDOSession\x12(.measurementservice.DOOpenSessionRequest\x1a).measurementservice.DOOpenSessionResponse\"\x00\x12Q\n\x06ReadDI\x12!.measurementservice.ReadDIRequest\x1a\".measurementservice.ReadDIResponse\"\x00\x12T\n\x07WriteDO\x12\".measurementservice.WriteDORequest\x1a#.measurementservice.WriteDOResponse\"\x00\x12i\n\x0e\x43loseDISession\x12).measurementservice.DICloseSessionRequest\x1a*.measurementservice.DICloseSessionResponse\"\x00\x12i\n\x0e\x43loseDOSession\x12).measurementservice.DOCloseSessionRequest\x1a*.measurementservice.DOCloseSessionResponse\"\x00\x42\x39\n\x1alabview.measurementserviceB\x12MeasurementServiceP\x01\xa2\x02\x04LVMSb\x06proto3'
 )
 
 
@@ -64,23 +64,23 @@ _ERROROUT = _descriptor.Descriptor(
 )
 
 
-_DIOOPENSESSIONREQUEST = _descriptor.Descriptor(
-  name='DIOOpenSessionRequest',
-  full_name='measurementservice.DIOOpenSessionRequest',
+_DIOPENSESSIONREQUEST = _descriptor.Descriptor(
+  name='DIOpenSessionRequest',
+  full_name='measurementservice.DIOpenSessionRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='DIOSessionName', full_name='measurementservice.DIOOpenSessionRequest.DIOSessionName', index=0,
+      name='DISessionName', full_name='measurementservice.DIOpenSessionRequest.DISessionName', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='DIOlines', full_name='measurementservice.DIOOpenSessionRequest.DIOlines', index=1,
+      name='DIlines', full_name='measurementservice.DIOpenSessionRequest.DIlines', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -99,27 +99,27 @@ _DIOOPENSESSIONREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=102,
-  serialized_end=167,
+  serialized_end=164,
 )
 
 
-_DIOOPENSESSIONRESPONSE = _descriptor.Descriptor(
-  name='DIOOpenSessionResponse',
-  full_name='measurementservice.DIOOpenSessionResponse',
+_DIOPENSESSIONRESPONSE = _descriptor.Descriptor(
+  name='DIOpenSessionResponse',
+  full_name='measurementservice.DIOpenSessionResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='DIOSessionName', full_name='measurementservice.DIOOpenSessionResponse.DIOSessionName', index=0,
+      name='DISessionName', full_name='measurementservice.DIOpenSessionResponse.DISessionName', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='error', full_name='measurementservice.DIOOpenSessionResponse.error', index=1,
+      name='error', full_name='measurementservice.DIOpenSessionResponse.error', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -137,8 +137,86 @@ _DIOOPENSESSIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=169,
-  serialized_end=262,
+  serialized_start=166,
+  serialized_end=257,
+)
+
+
+_DOOPENSESSIONREQUEST = _descriptor.Descriptor(
+  name='DOOpenSessionRequest',
+  full_name='measurementservice.DOOpenSessionRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='DOSessionName', full_name='measurementservice.DOOpenSessionRequest.DOSessionName', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='DOlines', full_name='measurementservice.DOOpenSessionRequest.DOlines', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=259,
+  serialized_end=321,
+)
+
+
+_DOOPENSESSIONRESPONSE = _descriptor.Descriptor(
+  name='DOOpenSessionResponse',
+  full_name='measurementservice.DOOpenSessionResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='DOSessionName', full_name='measurementservice.DOOpenSessionResponse.DOSessionName', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='error', full_name='measurementservice.DOOpenSessionResponse.error', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=323,
+  serialized_end=414,
 )
 
 
@@ -169,8 +247,8 @@ _READDIREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=264,
-  serialized_end=303,
+  serialized_start=416,
+  serialized_end=455,
 )
 
 
@@ -215,8 +293,8 @@ _READDIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=305,
-  serialized_end=406,
+  serialized_start=457,
+  serialized_end=558,
 )
 
 
@@ -254,8 +332,8 @@ _WRITEDOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=408,
-  serialized_end=464,
+  serialized_start=560,
+  serialized_end=616,
 )
 
 
@@ -293,21 +371,21 @@ _WRITEDORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=466,
-  serialized_end=552,
+  serialized_start=618,
+  serialized_end=704,
 )
 
 
-_DIOCLOSESESSIONREQUEST = _descriptor.Descriptor(
-  name='DIOCloseSessionRequest',
-  full_name='measurementservice.DIOCloseSessionRequest',
+_DICLOSESESSIONREQUEST = _descriptor.Descriptor(
+  name='DICloseSessionRequest',
+  full_name='measurementservice.DICloseSessionRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='DIOSessionName', full_name='measurementservice.DIOCloseSessionRequest.DIOSessionName', index=0,
+      name='DISessionName', full_name='measurementservice.DICloseSessionRequest.DISessionName', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -325,21 +403,21 @@ _DIOCLOSESESSIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=554,
-  serialized_end=602,
+  serialized_start=706,
+  serialized_end=752,
 )
 
 
-_DIOCLOSESESSIONRESPONSE = _descriptor.Descriptor(
-  name='DIOCloseSessionResponse',
-  full_name='measurementservice.DIOCloseSessionResponse',
+_DICLOSESESSIONRESPONSE = _descriptor.Descriptor(
+  name='DICloseSessionResponse',
+  full_name='measurementservice.DICloseSessionResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='error', full_name='measurementservice.DIOCloseSessionResponse.error', index=0,
+      name='error', full_name='measurementservice.DICloseSessionResponse.error', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -357,8 +435,72 @@ _DIOCLOSESESSIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=604,
-  serialized_end=674,
+  serialized_start=754,
+  serialized_end=823,
+)
+
+
+_DOCLOSESESSIONREQUEST = _descriptor.Descriptor(
+  name='DOCloseSessionRequest',
+  full_name='measurementservice.DOCloseSessionRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='DOSessionName', full_name='measurementservice.DOCloseSessionRequest.DOSessionName', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=825,
+  serialized_end=871,
+)
+
+
+_DOCLOSESESSIONRESPONSE = _descriptor.Descriptor(
+  name='DOCloseSessionResponse',
+  full_name='measurementservice.DOCloseSessionResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='error', full_name='measurementservice.DOCloseSessionResponse.error', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=873,
+  serialized_end=942,
 )
 
 
@@ -396,8 +538,8 @@ _INVOKEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=676,
-  serialized_end=727,
+  serialized_start=944,
+  serialized_end=995,
 )
 
 
@@ -428,8 +570,8 @@ _INVOKERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=729,
-  serialized_end=761,
+  serialized_start=997,
+  serialized_end=1029,
 )
 
 
@@ -460,8 +602,8 @@ _QUERYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=763,
-  serialized_end=792,
+  serialized_start=1031,
+  serialized_end=1060,
 )
 
 
@@ -499,8 +641,8 @@ _QUERYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=794,
-  serialized_end=842,
+  serialized_start=1062,
+  serialized_end=1110,
 )
 
 
@@ -531,8 +673,8 @@ _REGISTRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=844,
-  serialized_end=884,
+  serialized_start=1112,
+  serialized_end=1152,
 )
 
 
@@ -577,23 +719,29 @@ _SERVEREVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=886,
-  serialized_end=952,
+  serialized_start=1154,
+  serialized_end=1220,
 )
 
-_DIOOPENSESSIONRESPONSE.fields_by_name['error'].message_type = _ERROROUT
+_DIOPENSESSIONRESPONSE.fields_by_name['error'].message_type = _ERROROUT
+_DOOPENSESSIONRESPONSE.fields_by_name['error'].message_type = _ERROROUT
 _READDIRESPONSE.fields_by_name['error'].message_type = _ERROROUT
 _WRITEDORESPONSE.fields_by_name['error'].message_type = _ERROROUT
-_DIOCLOSESESSIONRESPONSE.fields_by_name['error'].message_type = _ERROROUT
+_DICLOSESESSIONRESPONSE.fields_by_name['error'].message_type = _ERROROUT
+_DOCLOSESESSIONRESPONSE.fields_by_name['error'].message_type = _ERROROUT
 DESCRIPTOR.message_types_by_name['ErrorOut'] = _ERROROUT
-DESCRIPTOR.message_types_by_name['DIOOpenSessionRequest'] = _DIOOPENSESSIONREQUEST
-DESCRIPTOR.message_types_by_name['DIOOpenSessionResponse'] = _DIOOPENSESSIONRESPONSE
+DESCRIPTOR.message_types_by_name['DIOpenSessionRequest'] = _DIOPENSESSIONREQUEST
+DESCRIPTOR.message_types_by_name['DIOpenSessionResponse'] = _DIOPENSESSIONRESPONSE
+DESCRIPTOR.message_types_by_name['DOOpenSessionRequest'] = _DOOPENSESSIONREQUEST
+DESCRIPTOR.message_types_by_name['DOOpenSessionResponse'] = _DOOPENSESSIONRESPONSE
 DESCRIPTOR.message_types_by_name['ReadDIRequest'] = _READDIREQUEST
 DESCRIPTOR.message_types_by_name['ReadDIResponse'] = _READDIRESPONSE
 DESCRIPTOR.message_types_by_name['WriteDORequest'] = _WRITEDOREQUEST
 DESCRIPTOR.message_types_by_name['WriteDOResponse'] = _WRITEDORESPONSE
-DESCRIPTOR.message_types_by_name['DIOCloseSessionRequest'] = _DIOCLOSESESSIONREQUEST
-DESCRIPTOR.message_types_by_name['DIOCloseSessionResponse'] = _DIOCLOSESESSIONRESPONSE
+DESCRIPTOR.message_types_by_name['DICloseSessionRequest'] = _DICLOSESESSIONREQUEST
+DESCRIPTOR.message_types_by_name['DICloseSessionResponse'] = _DICLOSESESSIONRESPONSE
+DESCRIPTOR.message_types_by_name['DOCloseSessionRequest'] = _DOCLOSESESSIONREQUEST
+DESCRIPTOR.message_types_by_name['DOCloseSessionResponse'] = _DOCLOSESESSIONRESPONSE
 DESCRIPTOR.message_types_by_name['InvokeRequest'] = _INVOKEREQUEST
 DESCRIPTOR.message_types_by_name['InvokeResponse'] = _INVOKERESPONSE
 DESCRIPTOR.message_types_by_name['QueryRequest'] = _QUERYREQUEST
@@ -609,19 +757,33 @@ ErrorOut = _reflection.GeneratedProtocolMessageType('ErrorOut', (_message.Messag
   })
 _sym_db.RegisterMessage(ErrorOut)
 
-DIOOpenSessionRequest = _reflection.GeneratedProtocolMessageType('DIOOpenSessionRequest', (_message.Message,), {
-  'DESCRIPTOR' : _DIOOPENSESSIONREQUEST,
+DIOpenSessionRequest = _reflection.GeneratedProtocolMessageType('DIOpenSessionRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DIOPENSESSIONREQUEST,
   '__module__' : 'dio_measurement_service_pb2'
-  # @@protoc_insertion_point(class_scope:measurementservice.DIOOpenSessionRequest)
+  # @@protoc_insertion_point(class_scope:measurementservice.DIOpenSessionRequest)
   })
-_sym_db.RegisterMessage(DIOOpenSessionRequest)
+_sym_db.RegisterMessage(DIOpenSessionRequest)
 
-DIOOpenSessionResponse = _reflection.GeneratedProtocolMessageType('DIOOpenSessionResponse', (_message.Message,), {
-  'DESCRIPTOR' : _DIOOPENSESSIONRESPONSE,
+DIOpenSessionResponse = _reflection.GeneratedProtocolMessageType('DIOpenSessionResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DIOPENSESSIONRESPONSE,
   '__module__' : 'dio_measurement_service_pb2'
-  # @@protoc_insertion_point(class_scope:measurementservice.DIOOpenSessionResponse)
+  # @@protoc_insertion_point(class_scope:measurementservice.DIOpenSessionResponse)
   })
-_sym_db.RegisterMessage(DIOOpenSessionResponse)
+_sym_db.RegisterMessage(DIOpenSessionResponse)
+
+DOOpenSessionRequest = _reflection.GeneratedProtocolMessageType('DOOpenSessionRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DOOPENSESSIONREQUEST,
+  '__module__' : 'dio_measurement_service_pb2'
+  # @@protoc_insertion_point(class_scope:measurementservice.DOOpenSessionRequest)
+  })
+_sym_db.RegisterMessage(DOOpenSessionRequest)
+
+DOOpenSessionResponse = _reflection.GeneratedProtocolMessageType('DOOpenSessionResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DOOPENSESSIONRESPONSE,
+  '__module__' : 'dio_measurement_service_pb2'
+  # @@protoc_insertion_point(class_scope:measurementservice.DOOpenSessionResponse)
+  })
+_sym_db.RegisterMessage(DOOpenSessionResponse)
 
 ReadDIRequest = _reflection.GeneratedProtocolMessageType('ReadDIRequest', (_message.Message,), {
   'DESCRIPTOR' : _READDIREQUEST,
@@ -651,19 +813,33 @@ WriteDOResponse = _reflection.GeneratedProtocolMessageType('WriteDOResponse', (_
   })
 _sym_db.RegisterMessage(WriteDOResponse)
 
-DIOCloseSessionRequest = _reflection.GeneratedProtocolMessageType('DIOCloseSessionRequest', (_message.Message,), {
-  'DESCRIPTOR' : _DIOCLOSESESSIONREQUEST,
+DICloseSessionRequest = _reflection.GeneratedProtocolMessageType('DICloseSessionRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DICLOSESESSIONREQUEST,
   '__module__' : 'dio_measurement_service_pb2'
-  # @@protoc_insertion_point(class_scope:measurementservice.DIOCloseSessionRequest)
+  # @@protoc_insertion_point(class_scope:measurementservice.DICloseSessionRequest)
   })
-_sym_db.RegisterMessage(DIOCloseSessionRequest)
+_sym_db.RegisterMessage(DICloseSessionRequest)
 
-DIOCloseSessionResponse = _reflection.GeneratedProtocolMessageType('DIOCloseSessionResponse', (_message.Message,), {
-  'DESCRIPTOR' : _DIOCLOSESESSIONRESPONSE,
+DICloseSessionResponse = _reflection.GeneratedProtocolMessageType('DICloseSessionResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DICLOSESESSIONRESPONSE,
   '__module__' : 'dio_measurement_service_pb2'
-  # @@protoc_insertion_point(class_scope:measurementservice.DIOCloseSessionResponse)
+  # @@protoc_insertion_point(class_scope:measurementservice.DICloseSessionResponse)
   })
-_sym_db.RegisterMessage(DIOCloseSessionResponse)
+_sym_db.RegisterMessage(DICloseSessionResponse)
+
+DOCloseSessionRequest = _reflection.GeneratedProtocolMessageType('DOCloseSessionRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DOCLOSESESSIONREQUEST,
+  '__module__' : 'dio_measurement_service_pb2'
+  # @@protoc_insertion_point(class_scope:measurementservice.DOCloseSessionRequest)
+  })
+_sym_db.RegisterMessage(DOCloseSessionRequest)
+
+DOCloseSessionResponse = _reflection.GeneratedProtocolMessageType('DOCloseSessionResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DOCLOSESESSIONRESPONSE,
+  '__module__' : 'dio_measurement_service_pb2'
+  # @@protoc_insertion_point(class_scope:measurementservice.DOCloseSessionResponse)
+  })
+_sym_db.RegisterMessage(DOCloseSessionResponse)
 
 InvokeRequest = _reflection.GeneratedProtocolMessageType('InvokeRequest', (_message.Message,), {
   'DESCRIPTOR' : _INVOKEREQUEST,
@@ -717,8 +893,8 @@ _MEASUREMENTSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=955,
-  serialized_end=1614,
+  serialized_start=1223,
+  serialized_end=2087,
   methods=[
   _descriptor.MethodDescriptor(
     name='Invoke',
@@ -751,19 +927,29 @@ _MEASUREMENTSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='OpenDIOSession',
-    full_name='measurementservice.MeasurementService.OpenDIOSession',
+    name='OpenDISession',
+    full_name='measurementservice.MeasurementService.OpenDISession',
     index=3,
     containing_service=None,
-    input_type=_DIOOPENSESSIONREQUEST,
-    output_type=_DIOOPENSESSIONRESPONSE,
+    input_type=_DIOPENSESSIONREQUEST,
+    output_type=_DIOPENSESSIONRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='OpenDOSession',
+    full_name='measurementservice.MeasurementService.OpenDOSession',
+    index=4,
+    containing_service=None,
+    input_type=_DOOPENSESSIONREQUEST,
+    output_type=_DOOPENSESSIONRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='ReadDI',
     full_name='measurementservice.MeasurementService.ReadDI',
-    index=4,
+    index=5,
     containing_service=None,
     input_type=_READDIREQUEST,
     output_type=_READDIRESPONSE,
@@ -773,7 +959,7 @@ _MEASUREMENTSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='WriteDO',
     full_name='measurementservice.MeasurementService.WriteDO',
-    index=5,
+    index=6,
     containing_service=None,
     input_type=_WRITEDOREQUEST,
     output_type=_WRITEDORESPONSE,
@@ -781,12 +967,22 @@ _MEASUREMENTSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='CloseDIOSession',
-    full_name='measurementservice.MeasurementService.CloseDIOSession',
-    index=6,
+    name='CloseDISession',
+    full_name='measurementservice.MeasurementService.CloseDISession',
+    index=7,
     containing_service=None,
-    input_type=_DIOCLOSESESSIONREQUEST,
-    output_type=_DIOCLOSESESSIONRESPONSE,
+    input_type=_DICLOSESESSIONREQUEST,
+    output_type=_DICLOSESESSIONRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CloseDOSession',
+    full_name='measurementservice.MeasurementService.CloseDOSession',
+    index=8,
+    containing_service=None,
+    input_type=_DOCLOSESESSIONREQUEST,
+    output_type=_DOCLOSESESSIONRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

@@ -40,13 +40,17 @@ service MeasurementService {
   
   rpc Register (RegistrationRequest) returns (stream ServerEvent) {}
   
-  rpc OpenDIOSession (DIOOpenSessionRequest) returns (DIOOpenSessionResponse) {}
+  rpc OpenDISession (DIOpenSessionRequest) returns (DIOpenSessionResponse) {}
+  
+  rpc OpenDOSession (DOOpenSessionRequest) returns (DOOpenSessionResponse) {}
   
   rpc ReadDI (ReadDIRequest) returns (ReadDIResponse) {}
   
   rpc WriteDO (WriteDORequest) returns (WriteDOResponse) {}
   
-  rpc CloseDIOSession (DIOCloseSessionRequest) returns (DIOCloseSessionResponse) {}
+  rpc CloseDISession (DICloseSessionRequest) returns (DICloseSessionResponse) {}
+  
+  rpc CloseDOSession (DOCloseSessionRequest) returns (DOCloseSessionResponse) {}
 }
 
 //---------------------------------------------------------------------
@@ -58,16 +62,30 @@ message ErrorOut {
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message DIOOpenSessionRequest {
-  string DIOSessionName = 1;
-  string DIOlines = 2;
+message DIOpenSessionRequest {
+  string DISessionName = 1;
+  string DIlines = 2;
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message DIOOpenSessionResponse {
-  string DIOSessionName = 1;
-  ErrorOut error = 1;
+message DIOpenSessionResponse {
+  string DISessionName = 1;
+  ErrorOut error = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DOOpenSessionRequest {
+  string DOSessionName = 1;
+  string DOlines = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DOOpenSessionResponse {
+  string DOSessionName = 1;
+  ErrorOut error = 2;
 }
 
 //---------------------------------------------------------------------
@@ -100,13 +118,25 @@ message WriteDOResponse {
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message DIOCloseSessionRequest {
-  string DIOSessionName = 1;
+message DICloseSessionRequest {
+  string DISessionName = 1;
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message DIOCloseSessionResponse {
+message DICloseSessionResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DOCloseSessionRequest {
+  string DOSessionName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DOCloseSessionResponse {
   ErrorOut error = 1;
 }
 

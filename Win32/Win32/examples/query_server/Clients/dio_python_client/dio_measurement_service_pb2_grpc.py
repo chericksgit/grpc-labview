@@ -32,10 +32,15 @@ class MeasurementServiceStub(object):
                 request_serializer=dio__measurement__service__pb2.RegistrationRequest.SerializeToString,
                 response_deserializer=dio__measurement__service__pb2.ServerEvent.FromString,
                 )
-        self.OpenDIOSession = channel.unary_unary(
-                '/measurementservice.MeasurementService/OpenDIOSession',
-                request_serializer=dio__measurement__service__pb2.DIOOpenSessionRequest.SerializeToString,
-                response_deserializer=dio__measurement__service__pb2.DIOOpenSessionResponse.FromString,
+        self.OpenDISession = channel.unary_unary(
+                '/measurementservice.MeasurementService/OpenDISession',
+                request_serializer=dio__measurement__service__pb2.DIOpenSessionRequest.SerializeToString,
+                response_deserializer=dio__measurement__service__pb2.DIOpenSessionResponse.FromString,
+                )
+        self.OpenDOSession = channel.unary_unary(
+                '/measurementservice.MeasurementService/OpenDOSession',
+                request_serializer=dio__measurement__service__pb2.DOOpenSessionRequest.SerializeToString,
+                response_deserializer=dio__measurement__service__pb2.DOOpenSessionResponse.FromString,
                 )
         self.ReadDI = channel.unary_unary(
                 '/measurementservice.MeasurementService/ReadDI',
@@ -47,10 +52,15 @@ class MeasurementServiceStub(object):
                 request_serializer=dio__measurement__service__pb2.WriteDORequest.SerializeToString,
                 response_deserializer=dio__measurement__service__pb2.WriteDOResponse.FromString,
                 )
-        self.CloseDIOSession = channel.unary_unary(
-                '/measurementservice.MeasurementService/CloseDIOSession',
-                request_serializer=dio__measurement__service__pb2.DIOCloseSessionRequest.SerializeToString,
-                response_deserializer=dio__measurement__service__pb2.DIOCloseSessionResponse.FromString,
+        self.CloseDISession = channel.unary_unary(
+                '/measurementservice.MeasurementService/CloseDISession',
+                request_serializer=dio__measurement__service__pb2.DICloseSessionRequest.SerializeToString,
+                response_deserializer=dio__measurement__service__pb2.DICloseSessionResponse.FromString,
+                )
+        self.CloseDOSession = channel.unary_unary(
+                '/measurementservice.MeasurementService/CloseDOSession',
+                request_serializer=dio__measurement__service__pb2.DOCloseSessionRequest.SerializeToString,
+                response_deserializer=dio__measurement__service__pb2.DOCloseSessionResponse.FromString,
                 )
 
 
@@ -78,7 +88,13 @@ class MeasurementServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def OpenDIOSession(self, request, context):
+    def OpenDISession(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def OpenDOSession(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -96,7 +112,13 @@ class MeasurementServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CloseDIOSession(self, request, context):
+    def CloseDISession(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CloseDOSession(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -120,10 +142,15 @@ def add_MeasurementServiceServicer_to_server(servicer, server):
                     request_deserializer=dio__measurement__service__pb2.RegistrationRequest.FromString,
                     response_serializer=dio__measurement__service__pb2.ServerEvent.SerializeToString,
             ),
-            'OpenDIOSession': grpc.unary_unary_rpc_method_handler(
-                    servicer.OpenDIOSession,
-                    request_deserializer=dio__measurement__service__pb2.DIOOpenSessionRequest.FromString,
-                    response_serializer=dio__measurement__service__pb2.DIOOpenSessionResponse.SerializeToString,
+            'OpenDISession': grpc.unary_unary_rpc_method_handler(
+                    servicer.OpenDISession,
+                    request_deserializer=dio__measurement__service__pb2.DIOpenSessionRequest.FromString,
+                    response_serializer=dio__measurement__service__pb2.DIOpenSessionResponse.SerializeToString,
+            ),
+            'OpenDOSession': grpc.unary_unary_rpc_method_handler(
+                    servicer.OpenDOSession,
+                    request_deserializer=dio__measurement__service__pb2.DOOpenSessionRequest.FromString,
+                    response_serializer=dio__measurement__service__pb2.DOOpenSessionResponse.SerializeToString,
             ),
             'ReadDI': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadDI,
@@ -135,10 +162,15 @@ def add_MeasurementServiceServicer_to_server(servicer, server):
                     request_deserializer=dio__measurement__service__pb2.WriteDORequest.FromString,
                     response_serializer=dio__measurement__service__pb2.WriteDOResponse.SerializeToString,
             ),
-            'CloseDIOSession': grpc.unary_unary_rpc_method_handler(
-                    servicer.CloseDIOSession,
-                    request_deserializer=dio__measurement__service__pb2.DIOCloseSessionRequest.FromString,
-                    response_serializer=dio__measurement__service__pb2.DIOCloseSessionResponse.SerializeToString,
+            'CloseDISession': grpc.unary_unary_rpc_method_handler(
+                    servicer.CloseDISession,
+                    request_deserializer=dio__measurement__service__pb2.DICloseSessionRequest.FromString,
+                    response_serializer=dio__measurement__service__pb2.DICloseSessionResponse.SerializeToString,
+            ),
+            'CloseDOSession': grpc.unary_unary_rpc_method_handler(
+                    servicer.CloseDOSession,
+                    request_deserializer=dio__measurement__service__pb2.DOCloseSessionRequest.FromString,
+                    response_serializer=dio__measurement__service__pb2.DOCloseSessionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -205,7 +237,7 @@ class MeasurementService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def OpenDIOSession(request,
+    def OpenDISession(request,
             target,
             options=(),
             channel_credentials=None,
@@ -215,9 +247,26 @@ class MeasurementService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/measurementservice.MeasurementService/OpenDIOSession',
-            dio__measurement__service__pb2.DIOOpenSessionRequest.SerializeToString,
-            dio__measurement__service__pb2.DIOOpenSessionResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/measurementservice.MeasurementService/OpenDISession',
+            dio__measurement__service__pb2.DIOpenSessionRequest.SerializeToString,
+            dio__measurement__service__pb2.DIOpenSessionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def OpenDOSession(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/measurementservice.MeasurementService/OpenDOSession',
+            dio__measurement__service__pb2.DOOpenSessionRequest.SerializeToString,
+            dio__measurement__service__pb2.DOOpenSessionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -256,7 +305,7 @@ class MeasurementService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CloseDIOSession(request,
+    def CloseDISession(request,
             target,
             options=(),
             channel_credentials=None,
@@ -266,8 +315,25 @@ class MeasurementService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/measurementservice.MeasurementService/CloseDIOSession',
-            dio__measurement__service__pb2.DIOCloseSessionRequest.SerializeToString,
-            dio__measurement__service__pb2.DIOCloseSessionResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/measurementservice.MeasurementService/CloseDISession',
+            dio__measurement__service__pb2.DICloseSessionRequest.SerializeToString,
+            dio__measurement__service__pb2.DICloseSessionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CloseDOSession(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/measurementservice.MeasurementService/CloseDOSession',
+            dio__measurement__service__pb2.DOCloseSessionRequest.SerializeToString,
+            dio__measurement__service__pb2.DOCloseSessionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
