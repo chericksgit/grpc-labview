@@ -42,7 +42,7 @@ for x in Frequencies:
     print ("Modify PWM Frequency")
     print (pwm_modify_response)
     print("")
-    time.sleep(10)
+    time.sleep(2)
 
 # Stop PWM
 pwm_stop_response = measurementServer.StopPWM(ms.PWMStopRequest())
