@@ -1,0 +1,174 @@
+//---------------------------------------------------------------------
+// Copyright 2020 National Instruments
+//
+// Licensed under the MIT License;
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://mit-license.org/
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//---------------------------------------------------------------------
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+syntax = "proto3";
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+option java_multiple_files = true;
+option java_package = "labview.measurementservice";
+option java_outer_classname = "MeasurementService";
+option objc_class_prefix = "LVMS";
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+package measurementservice;
+
+//---------------------------------------------------------------------
+// The MeasurementService service definition.
+//---------------------------------------------------------------------
+service MeasurementService {
+  
+  rpc Invoke (InvokeRequest) returns (InvokeResponse) {}
+  
+  rpc Query (QueryRequest) returns (QueryResponse) {}
+  
+  rpc Register (RegistrationRequest) returns (stream ServerEvent) {}
+  
+  rpc OpenNI2564Session (NI2564OpenSessionRequest) returns (NI2564OpenSessionResponse) {}
+  
+  rpc CloseNI2564Channel (NI2564CloseChannelRequest) returns (NI2564CloseChannelResponse) {}
+  
+  rpc OpenNI2564Channel (NI2564OpenChannelRequest) returns (NI2564OpenChannelResponse) {}
+  
+  rpc DisconnectAllNI2564Channels (NI2564DisconnectAllRequest) returns (NI2564DisconnectAllResponse) {}
+  
+  rpc CloseNI2564Session (NI2564CloseSessionRequest) returns (NI2564CloseSessionResponse) {}
+  
+  rpc ResetNI2564 (NI2564ResetRequest) returns (NI2564ResetResponse) {}
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ErrorOut {
+  int32 errCode = 1;
+  string errMessage = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564OpenSessionRequest {
+  string NI2564Name = 1;
+  string NI2564Topology = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564OpenSessionResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564CloseChannelRequest {
+  string Channel1 = 1;
+  string Channel2 = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564CloseChannelResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564OpenChannelRequest {
+  string Channel1 = 1;
+  string Channel2 = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564OpenChannelResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564DisconnectAllRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564DisconnectAllResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564CloseSessionRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564CloseSessionResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564ResetRequest {
+  string NI2564Name = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message NI2564ResetResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message InvokeRequest {
+  string command = 1;
+  string parameter = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message InvokeResponse {
+  int32 status = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message QueryRequest {
+  string query = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message QueryResponse {
+  string message = 1;
+  int32 status = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message RegistrationRequest {
+  string eventName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ServerEvent {
+  string eventData = 1;
+  int32 serverId = 2;
+  int32 status = 3;
+}
