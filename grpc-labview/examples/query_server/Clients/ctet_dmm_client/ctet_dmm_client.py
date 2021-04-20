@@ -15,6 +15,18 @@ measurementServer = msgrpc.MeasurementServiceStub(channel)
 uptime = measurementServer.Query(ms.QueryRequest(query = "Uptime"))
 print("Server Uptime: " + uptime.message)
 
+# Open DMM Session
+dmm_open_session_response = measurementServer.OpenDMMSession(ms.DMMOpenSessionRequest(DMMName = "DMM"))
+print ("DMM Open Session")
+print (dmm_open_session_response)
+print("")
+
+# Close DMM Session
+dmm_close_session_response = measurementServer.CloseDMMSession(ms.DMMCloseSessionRequest())
+print ("DMM Close Session")
+print (dmm_close_session_response)
+print("")
+
 # reader = measurementServer.Register(ms.RegistrationRequest(eventName = "Heartbeat"))
 
 # for x in range(0, 5):
