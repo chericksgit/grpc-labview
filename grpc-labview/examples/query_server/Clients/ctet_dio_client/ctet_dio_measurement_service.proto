@@ -1,0 +1,197 @@
+//---------------------------------------------------------------------
+// Copyright 2020 National Instruments
+//
+// Licensed under the MIT License;
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://mit-license.org/
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//---------------------------------------------------------------------
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+syntax = "proto3";
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+option java_multiple_files = true;
+option java_package = "labview.measurementservice";
+option java_outer_classname = "MeasurementService";
+option objc_class_prefix = "LVMS";
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+package measurementservice;
+
+//---------------------------------------------------------------------
+// The MeasurementService service definition.
+//---------------------------------------------------------------------
+service MeasurementService {
+  
+  rpc Invoke (InvokeRequest) returns (InvokeResponse) {}
+  
+  rpc Query (QueryRequest) returns (QueryResponse) {}
+  
+  rpc Register (RegistrationRequest) returns (stream ServerEvent) {}
+  
+  rpc OpenDISession (DIOpenSessionRequest) returns (DIOpenSessionResponse) {}
+  
+  rpc OpenDOSession (DOOpenSessionRequest) returns (DOOpenSessionResponse) {}
+  
+  rpc ReadDI (ReadDIRequest) returns (stream ReadDIResponse) {}
+  
+  rpc StopDI (StopDIRequest) returns (StopDIResponse) {}
+  
+  rpc WriteDO (WriteDORequest) returns (WriteDOResponse) {}
+  
+  rpc CloseDISession (DICloseSessionRequest) returns (DICloseSessionResponse) {}
+  
+  rpc CloseDOSession (DOCloseSessionRequest) returns (DOCloseSessionResponse) {}
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ErrorOut {
+  int64 errCode = 1;
+  string errMessage = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DIOpenSessionRequest {
+  string DISessionName = 1;
+  string DIlines = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DIOpenSessionResponse {
+  string DISessionName = 1;
+  ErrorOut error = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DOOpenSessionRequest {
+  string DOSessionName = 1;
+  string DOlines = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DOOpenSessionResponse {
+  string DOSessionName = 1;
+  ErrorOut error = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ReadDIRequest {
+  string DISessionName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ReadDIResponse {
+  string DISessionName = 1;
+  repeated bool DIData = 2; 
+  ErrorOut error = 3;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message StopDIRequest {
+  string DISessionName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message StopDIResponse {
+  string DISessionName = 1; 
+  ErrorOut error = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message WriteDORequest {
+  string DOSessionName = 1;
+  repeated bool DOData = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message WriteDOResponse {
+  string DOSessionName = 1;
+  repeated bool DOData = 2;
+  ErrorOut error = 3;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DICloseSessionRequest {
+  string DISessionName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DICloseSessionResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DOCloseSessionRequest {
+  string DOSessionName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DOCloseSessionResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message InvokeRequest {
+  string command = 1;
+  string parameter = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message InvokeResponse {
+  int64 status = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message QueryRequest {
+  string query = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message QueryResponse {
+  string message = 1;
+  int64 status = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message RegistrationRequest {
+  string eventName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ServerEvent {
+  string eventData = 1;
+  int64 serverId = 2;
+  int64 status = 3;
+}
