@@ -44,7 +44,7 @@ service MeasurementService {
   
   rpc ConfigureDMM (DMMConfigRequest) returns (DMMConfigResponse) {}
   
-  rpc PerformDMMVoltageMeasurement (DMMVoltageRequest) returns (DMMVoltageData) {}
+  rpc PerformDMMMeasurement (DMMMeasurementRequest) returns (DMMMeasurementData) {}
   
   rpc CloseDMMSession (DMMCloseSessionRequest) returns (DMMCloseSessionResponse) {}
   
@@ -105,13 +105,13 @@ message DMMConfigResponse {
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message DMMVoltageRequest {
+message DMMMeasurementRequest {
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message DMMVoltageData {
-  repeated double voltage = 1;
+message DMMMeasurementData {
+  repeated double measurement = 1;
   ErrorOut error = 2;
 }
 

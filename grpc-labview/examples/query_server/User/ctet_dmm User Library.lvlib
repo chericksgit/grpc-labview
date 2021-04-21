@@ -12,9 +12,14 @@
 	</Item>
 	<Item Name="VIs" Type="Folder">
 		<Item Name="CloseSession.vi" Type="VI" URL="../VIs/CloseSession.vi"/>
+		<Item Name="ConfigMeasurement.vi" Type="VI" URL="../VIs/ConfigMeasurement.vi"/>
+		<Item Name="Configure.vi" Type="VI" URL="../VIs/Configure.vi"/>
+		<Item Name="Measure.vi" Type="VI" URL="../../../../../../../../../hvc/grpc-labview/grpc-labview/examples/query_server/User/VIs/Measure.vi"/>
 		<Item Name="OpenSession.vi" Type="VI" URL="../VIs/OpenSession.vi"/>
+		<Item Name="PerformMeasurement.vi" Type="VI" URL="../VIs/PerformMeasurement.vi"/>
 		<Item Name="Query.vi" Type="VI" URL="../VIs/Query.vi"/>
 		<Item Name="Reset.vi" Type="VI" URL="../VIs/Reset.vi"/>
+		<Item Name="SelfCal.vi" Type="VI" URL="../VIs/SelfCal.vi"/>
 	</Item>
 	<Item Name="ctet_dmm_User Main.vi" Type="VI" URL="../ctet_dmm_User Main.vi"/>
 </Library>
