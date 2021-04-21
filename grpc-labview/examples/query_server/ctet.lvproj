@@ -10,18 +10,7 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
-		<Item Name="ctet_smu" Type="Folder">
-			<Item Name="ctet_smu.lvlib" Type="Library" URL="../Servers/ctet_smu/ctet_smu.lvlib"/>
-		</Item>
-		<Item Name="ctet_smu User" Type="Folder">
-			<Item Name="ctet_smu User Library.lvlib" Type="Library" URL="../User/smu/ctet_smu User Library.lvlib"/>
-		</Item>
-		<Item Name="Dependencies" Type="Dependencies">
-			<Item Name="vi.lib" Type="Folder">
-				<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
-				<Item Name="Get LV Class Path.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/LVClass/Get LV Class Path.vi"/>
-			</Item>
-		</Item>
+		<Item Name="Dependencies" Type="Dependencies"/>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
 	<Item Name="NI-PXIe-8821-0320C16A" Type="RT PXI Chassis">
@@ -107,6 +96,12 @@ AddOutputFilter chunkFilter
 		<Item Name="ctet_dmm User" Type="Folder">
 			<Item Name="ctet_dmm User Library.lvlib" Type="Library" URL="../User/dmm/ctet_dmm User Library.lvlib"/>
 		</Item>
+		<Item Name="ctet_smu" Type="Folder">
+			<Item Name="ctet_smu.lvlib" Type="Library" URL="../Servers/ctet_smu/ctet_smu.lvlib"/>
+		</Item>
+		<Item Name="ctet_smu User" Type="Folder">
+			<Item Name="ctet_smu User Library.lvlib" Type="Library" URL="../User/smu/ctet_smu User Library.lvlib"/>
+		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="instr.lib" Type="Folder">
 				<Item Name="niDMM Close.vi" Type="VI" URL="/&lt;instrlib&gt;/niDMM/nidmm.llb/niDMM Close.vi"/>
@@ -133,23 +128,23 @@ AddOutputFilter chunkFilter
 			</Item>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
-			<Item Name="My Real-Time Application" Type="{69A947D5-514E-4E75-818E-69657C0547D8}">
+			<Item Name="DMM" Type="{69A947D5-514E-4E75-818E-69657C0547D8}">
 				<Property Name="App_copyErrors" Type="Bool">true</Property>
 				<Property Name="App_INI_aliasGUID" Type="Str">{0475A22B-6EB6-4724-839F-E1907635A17C}</Property>
 				<Property Name="App_INI_GUID" Type="Str">{F83F4D0D-6A25-4A3E-BA7D-0526A870EAD8}</Property>
 				<Property Name="App_serverConfig.httpPort" Type="Int">8002</Property>
 				<Property Name="Bld_autoIncrement" Type="Bool">true</Property>
 				<Property Name="Bld_buildCacheID" Type="Str">{C4FB8DE6-87F8-455A-A73D-08D5350E9091}</Property>
-				<Property Name="Bld_buildSpecName" Type="Str">My Real-Time Application</Property>
+				<Property Name="Bld_buildSpecName" Type="Str">DMM</Property>
 				<Property Name="Bld_excludeInlineSubVIs" Type="Bool">true</Property>
 				<Property Name="Bld_excludeLibraryItems" Type="Bool">true</Property>
 				<Property Name="Bld_excludePolymorphicVIs" Type="Bool">true</Property>
-				<Property Name="Bld_localDestDir" Type="Path">../builds/NI_AB_PROJECTNAME/NI_AB_TARGETNAME/My Real-Time Application</Property>
+				<Property Name="Bld_localDestDir" Type="Path">../builds/NI_AB_PROJECTNAME/NI_AB_TARGETNAME/DMM</Property>
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{CC19CB12-CBDF-436C-B5D2-1A9BC6FB8ECE}</Property>
 				<Property Name="Bld_targetDestDir" Type="Path">/home/lvuser/natinst/bin</Property>
-				<Property Name="Bld_version.build" Type="Int">5</Property>
+				<Property Name="Bld_version.build" Type="Int">6</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">startup.rtexe</Property>
 				<Property Name="Destination[0].path" Type="Path">/home/lvuser/natinst/bin/startup.rtexe</Property>
@@ -160,22 +155,68 @@ AddOutputFilter chunkFilter
 				<Property Name="Destination[1].path" Type="Path">/home/lvuser/natinst/bin</Property>
 				<Property Name="Destination[1].path.type" Type="Str">&lt;none&gt;</Property>
 				<Property Name="DestinationCount" Type="Int">2</Property>
-				<Property Name="Source[0].itemID" Type="Str">{463B29D8-0CB3-402E-834F-E78CF28891DE}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{D0A9A405-FB8A-4380-8ABE-FF9636433629}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[1].itemID" Type="Ref"></Property>
-				<Property Name="Source[1].sourceInclusion" Type="Str">TopLevel</Property>
-				<Property Name="Source[1].type" Type="Str">VI</Property>
+				<Property Name="Source[1].itemID" Type="Ref">/NI-PXIe-8821-0320C16A/ctet_dmm/ctet_dmm.lvlib/gprc-lvsupport.lvlib/Libraries/LinuxRT/liblabview_grpc_server.so</Property>
+				<Property Name="Source[1].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[2].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[2].itemID" Type="Ref">/NI-PXIe-8821-0320C16A/ctet_dmm/ctet_dmm.lvlib/gprc-lvsupport.lvlib/Libraries/LinuxRT/liblabview_grpc_server.so</Property>
-				<Property Name="Source[2].sourceInclusion" Type="Str">Include</Property>
+				<Property Name="Source[2].itemID" Type="Ref">/NI-PXIe-8821-0320C16A/ctet_dmm User/ctet_dmm User Library.lvlib/ctet_dmm_User Main.vi</Property>
+				<Property Name="Source[2].sourceInclusion" Type="Str">TopLevel</Property>
+				<Property Name="Source[2].type" Type="Str">VI</Property>
 				<Property Name="SourceCount" Type="Int">3</Property>
 				<Property Name="TgtF_companyName" Type="Str">National Instruments</Property>
-				<Property Name="TgtF_fileDescription" Type="Str">My Real-Time Application</Property>
-				<Property Name="TgtF_internalName" Type="Str">My Real-Time Application</Property>
+				<Property Name="TgtF_fileDescription" Type="Str">DMM</Property>
+				<Property Name="TgtF_internalName" Type="Str">DMM</Property>
 				<Property Name="TgtF_legalCopyright" Type="Str">Copyright © 2021 National Instruments</Property>
-				<Property Name="TgtF_productName" Type="Str">My Real-Time Application</Property>
+				<Property Name="TgtF_productName" Type="Str">DMM</Property>
 				<Property Name="TgtF_targetfileGUID" Type="Str">{19FDEA70-81F7-472C-A60C-852E8A1FC093}</Property>
+				<Property Name="TgtF_targetfileName" Type="Str">startup.rtexe</Property>
+				<Property Name="TgtF_versionIndependent" Type="Bool">true</Property>
+			</Item>
+			<Item Name="SMU" Type="{69A947D5-514E-4E75-818E-69657C0547D8}">
+				<Property Name="App_copyErrors" Type="Bool">true</Property>
+				<Property Name="App_INI_aliasGUID" Type="Str">{99E71308-1D32-483E-8924-4BD195E85056}</Property>
+				<Property Name="App_INI_GUID" Type="Str">{4FDD842F-36E7-4F6E-BF75-922443159353}</Property>
+				<Property Name="App_serverConfig.httpPort" Type="Int">8002</Property>
+				<Property Name="Bld_autoIncrement" Type="Bool">true</Property>
+				<Property Name="Bld_buildCacheID" Type="Str">{B03D998B-EC35-40D8-B6A8-0C9AA34E2A2C}</Property>
+				<Property Name="Bld_buildSpecName" Type="Str">SMU</Property>
+				<Property Name="Bld_excludeInlineSubVIs" Type="Bool">true</Property>
+				<Property Name="Bld_excludeLibraryItems" Type="Bool">true</Property>
+				<Property Name="Bld_excludePolymorphicVIs" Type="Bool">true</Property>
+				<Property Name="Bld_localDestDir" Type="Path">../builds/NI_AB_PROJECTNAME/NI_AB_TARGETNAME/SMU</Property>
+				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
+				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
+				<Property Name="Bld_previewCacheID" Type="Str">{9F7C43BC-74C4-455B-9E89-BD6FE40ACF93}</Property>
+				<Property Name="Bld_targetDestDir" Type="Path">/home/lvuser/natinst/bin</Property>
+				<Property Name="Bld_version.build" Type="Int">1</Property>
+				<Property Name="Bld_version.major" Type="Int">1</Property>
+				<Property Name="Destination[0].destName" Type="Str">startup.rtexe</Property>
+				<Property Name="Destination[0].path" Type="Path">/home/lvuser/natinst/bin/startup.rtexe</Property>
+				<Property Name="Destination[0].path.type" Type="Str">&lt;none&gt;</Property>
+				<Property Name="Destination[0].preserveHierarchy" Type="Bool">true</Property>
+				<Property Name="Destination[0].type" Type="Str">App</Property>
+				<Property Name="Destination[1].destName" Type="Str">Support Directory</Property>
+				<Property Name="Destination[1].path" Type="Path">/home/lvuser/natinst/bin</Property>
+				<Property Name="Destination[1].path.type" Type="Str">&lt;none&gt;</Property>
+				<Property Name="DestinationCount" Type="Int">2</Property>
+				<Property Name="Source[0].itemID" Type="Str">{D0A9A405-FB8A-4380-8ABE-FF9636433629}</Property>
+				<Property Name="Source[0].type" Type="Str">Container</Property>
+				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
+				<Property Name="Source[1].itemID" Type="Ref">/NI-PXIe-8821-0320C16A/ctet_smu/ctet_smu.lvlib/gprc-lvsupport.lvlib/Libraries/LinuxRT/liblabview_grpc_server.so</Property>
+				<Property Name="Source[1].sourceInclusion" Type="Str">Include</Property>
+				<Property Name="Source[2].destinationIndex" Type="Int">0</Property>
+				<Property Name="Source[2].itemID" Type="Ref">/NI-PXIe-8821-0320C16A/ctet_smu User/ctet_smu User Library.lvlib/ctet_smu_User Main.vi</Property>
+				<Property Name="Source[2].sourceInclusion" Type="Str">TopLevel</Property>
+				<Property Name="Source[2].type" Type="Str">VI</Property>
+				<Property Name="SourceCount" Type="Int">3</Property>
+				<Property Name="TgtF_companyName" Type="Str">National Instruments</Property>
+				<Property Name="TgtF_fileDescription" Type="Str">SMU</Property>
+				<Property Name="TgtF_internalName" Type="Str">SMU</Property>
+				<Property Name="TgtF_legalCopyright" Type="Str">Copyright © 2021 National Instruments</Property>
+				<Property Name="TgtF_productName" Type="Str">SMU</Property>
+				<Property Name="TgtF_targetfileGUID" Type="Str">{D4036B87-3704-407A-9543-E5878B35D45C}</Property>
 				<Property Name="TgtF_targetfileName" Type="Str">startup.rtexe</Property>
 				<Property Name="TgtF_versionIndependent" Type="Bool">true</Property>
 			</Item>
