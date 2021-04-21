@@ -1,0 +1,223 @@
+//---------------------------------------------------------------------
+// Copyright 2020 National Instruments
+//
+// Licensed under the MIT License;
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://mit-license.org/
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//---------------------------------------------------------------------
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+syntax = "proto3";
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+option java_multiple_files = true;
+option java_package = "labview.measurementservice";
+option java_outer_classname = "MeasurementService";
+option objc_class_prefix = "LVMS";
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+package measurementservice;
+
+//---------------------------------------------------------------------
+// The MeasurementService service definition.
+//---------------------------------------------------------------------
+service MeasurementService {
+  
+  rpc Invoke (InvokeRequest) returns (InvokeResponse) {}
+  
+  rpc Query (QueryRequest) returns (QueryResponse) {}
+  
+  rpc Register (RegistrationRequest) returns (stream ServerEvent) {}
+  
+  rpc OpenSMUSession (SMUOpenSessionRequest) returns (SMUOpenSessionResponse) {}
+  
+  rpc ConfigureSMU (SMUConfigRequest) returns (SMUConfigResponse) {}
+  
+  rpc EnableSMUOutput (SMUEnableRequest) returns (SMUEnableResponse) {}
+  
+  rpc DisableSMUOutput (SMUDisableRequest) returns (SMUDisableResponse) {}
+  
+  rpc PerformSMUCurrentMeasurement (SMUCurrentRequest) returns (SMUCurrentData) {}  
+  
+  rpc CloseSMUSession (SMUCloseSessionRequest) returns (SMUCloseSessionResponse) {}
+  
+  rpc SelfCalibrateSMU (SMUSelfCalRequest) returns (SMUSelfCalResponse) {}
+  
+  rpc ResetSMU (SMUResetRequest) returns (SMUResetResponse) {}
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ErrorOut {
+  int64 errCode = 1;
+  string errMessage = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUOpenSessionRequest {
+  string SMUName = 1;
+  string SMUChannels = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUOpenSessionResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUConfigRequest {
+  string SMUChannels = 1;
+  int64 SMUSourceMode = 2;
+  int64 SMUOutputFunction = 3;
+  int64 SMUSourceTransientResponse = 4;
+  double SMUCurrent = 5;
+  double SMUCurrentLevelRange = 6;
+  int64 SMUMeasurementSense = 7;
+  int64 SMUApertureTimeUnit = 8;
+  double SMUMeasurementApertureTime = 9;
+  double SMUSourceAdvancedSourceDelay = 10;
+  double SMUVoltage = 11;
+  int64 SMUMeasurementAdvancedDCNoiseRejection = 12;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUConfigResponse {
+  string SMUChannels = 1;
+  int64 SMUSourceMode = 2;
+  int64 SMUOutputFunction = 3;
+  int64 SMUSourceTransientResponse = 4;
+  double SMUCurrent = 5;
+  double SMUCurrentLevelRange = 6;
+  int64 SMUMeasurementSense = 7;
+  int64 SMUApertureTimeUnit = 8;
+  double SMUMeasurementApertureTime = 9;
+  double SMUSourceAdvancedSourceDelay = 10;
+  double SMUVoltage = 11;
+  int64 SMUMeasurementAdvancedDCNoiseRejection = 12;
+  ErrorOut error = 13;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUEnableRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUEnableResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUDisableRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUDisableResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUCurrentRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUCurrentData {
+  double current = 1;
+  ErrorOut error = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUCloseSessionRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUCloseSessionResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUSelfCalRequest {
+  string SMUName = 1;
+  string SMUChannels = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUSelfCalResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUResetRequest {
+  string SMUName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMUResetResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message InvokeRequest {
+  string command = 1;
+  string parameter = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message InvokeResponse {
+  int64 status = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message QueryRequest {
+  string query = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message QueryResponse {
+  string message = 1;
+  int64 status = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message RegistrationRequest {
+  string eventName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ServerEvent {
+  string eventData = 1;
+  int64 serverId = 2;
+  int64 status = 3;
+}
