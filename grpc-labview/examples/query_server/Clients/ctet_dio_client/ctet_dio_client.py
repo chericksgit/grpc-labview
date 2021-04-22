@@ -13,93 +13,110 @@ uptime = measurementServer.Query(ms.QueryRequest(query = "Uptime"))
 print("Server Uptime: " + uptime.message)
 print("")
 
-# # Open DI Session
-# di_open_session_response = measurementServer.OpenDISession(ms.DIOpenSessionRequest(
-#     DISessionName = "DISession1", 
-#     DIlines = "6514/port0/line0"))
-# print ("DI Open Session")
-# print (di_open_session_response)
-# print("")
+# Open DI Session
+di_open_session_response = measurementServer.OpenDISession(ms.DIOpenSessionRequest(
+    DISessionName = "DISession1", 
+    DIlines = "6514/port0/line0:3, 6514/port1/line0:3"))
+print ("DI Open Session")
+print (di_open_session_response)
+print("")
 
-# # Read DI 
-# di_read_response = measurementServer.ReadDI(ms.ReadDIRequest(DIOSessionName = "DISession1"))
-# print ("DI Read")
-# print (di_read_response)
-# print("")
+# Read DI 
+# DISubscribeInterval in milliseconds
+di_read_response = measurementServer.ReadDI(ms.ReadDIRequest(
+    DISessionName = "DISession1",
+    DISubscribeInterval = 500))
+print ("DI Read")
+print (di_read_response)
+x = 0
+for di in di_read_response:
+    print ("DISessionName: " + str(di.DISessionName))
+    print ("Error: " + str(di.error.errCode))
+    print ("Data: " + str(di.DIData))
+    x+=1
+    if (x>5):
+        break
+print("")
 
-# # Close DI Session
-# di_close_session_response = measurementServer.CloseDISession(ms.DICloseSessionRequest(DISessionName = "DISession1"))
-# print ("DI Close Session")
-# print (di_close_session_response)
-# print("")
+# Stop DI 
+di_stop_response = measurementServer.StopDI(ms.StopDIRequest(DISessionName = "DISession1"))
+print ("DI Stop")
+print (di_stop_response)
+print("")
 
-# # Open DO Session
-# do_open_session_response = measurementServer.OpenDOSession(ms.DOOpenSessionRequest(
-#     DOSessionName = "DOSession1",
-#     DOlines = "6514/port4/line0:5"))
-# print ("DO Open Session")
-# print (do_open_session_response)
-# print("")
+# Close DI Session
+di_close_session_response = measurementServer.CloseDISession(ms.DICloseSessionRequest(DISessionName = "DISession1"))
+print ("DI Close Session")
+print (di_close_session_response)
+print("")
+
+# Open DO Session
+do_open_session_response = measurementServer.OpenDOSession(ms.DOOpenSessionRequest(
+    DOSessionName = "DOSession1",
+    DOlines = "6514/port4/line0:5"))
+print ("DO Open Session")
+print (do_open_session_response)
+print("")
 
 
-# # Write DO
-# do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
-#     DIOSessionName = "DOSession1",
-#     DOData = [True, True, True, True, True, True]))
-# print ("DO Write")
-# print (do_write_response)
-# print("")
-# time.sleep(1)
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DOSessionName = "DOSession1",
+    DOData = [True, True, True, True, True, True]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(1)
 
-# # Write DO
-# do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
-#     DIOSessionName = "DOSession1",
-#     DOData = [False, False, False, False, False, False]))
-# print ("DO Write")
-# print (do_write_response)
-# print("")
-# time.sleep(1)
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DOSessionName = "DOSession1",
+    DOData = [False, False, False, False, False, False]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(1)
 
-# # Write DO
-# do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
-#     DIOSessionName = "DOSession1",
-#     DOData = [True, True, True, True, True, True]))
-# print ("DO Write")
-# print (do_write_response)
-# print("")
-# time.sleep(1)
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DOSessionName = "DOSession1",
+    DOData = [True, True, True, True, True, True]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(1)
 
-# # Write DO
-# do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
-#     DIOSessionName = "DOSession1",
-#     DOData = [False, False, False, False, False, False]))
-# print ("DO Write")
-# print (do_write_response)
-# print("")
-# time.sleep(1)
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DOSessionName = "DOSession1",
+    DOData = [False, False, False, False, False, False]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(1)
 
-# # Write DO
-# do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
-#     DIOSessionName = "DOSession1",
-#     DOData = [True, True, True, True, True, True]))
-# print ("DO Write")
-# print (do_write_response)
-# print("")
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DOSessionName = "DOSession1",
+    DOData = [True, True, True, True, True, True]))
+print ("DO Write")
+print (do_write_response)
+print("")
 
-# # Write DO
-# do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
-#     DIOSessionName = "DOSession1",
-#     DOData = [False, False, False, False, False, False]))
-# print ("DO Write")
-# print (do_write_response)
-# print("")
-# time.sleep(1)
+# Write DO
+do_write_response = measurementServer.WriteDO(ms.WriteDORequest(
+    DOSessionName = "DOSession1",
+    DOData = [False, False, False, False, False, False]))
+print ("DO Write")
+print (do_write_response)
+print("")
+time.sleep(1)
 
-# # Close DO Session
-# do_close_session_response = measurementServer.CloseDOSession(ms.DOCloseSessionRequest(DOSessionName = "DOSession1"))
-# print ("DO Close Session")
-# print (do_close_session_response)
-# print("")
+# Close DO Session
+do_close_session_response = measurementServer.CloseDOSession(ms.DOCloseSessionRequest(DOSessionName = "DOSession1"))
+print ("DO Close Session")
+print (do_close_session_response)
+print("")
 
 # # Start PWM
 # # PWMInitialState = (True, False)

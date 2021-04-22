@@ -94,6 +94,7 @@ message DOOpenSessionResponse {
 //---------------------------------------------------------------------
 message ReadDIRequest {
   string DISessionName = 1;
+  int64 DISubscribeInterval = 2;
 }
 
 //---------------------------------------------------------------------
