@@ -42,15 +42,27 @@ service MeasurementService {
   
   rpc OpenMUXSession (MUXOpenSessionRequest) returns (MUXOpenSessionResponse) {}
   
+  rpc CloseMUXSession (MUXCloseSessionRequest) returns (MUXCloseSessionResponse) {}
+
+  rpc OpenMUXChannel (MUXOpenChannelRequest) returns (MUXOpenChannelResponse) {}
+
   rpc CloseMUXChannel (MUXCloseChannelRequest) returns (MUXCloseChannelResponse) {}
   
-  rpc OpenMUXChannel (MUXOpenChannelRequest) returns (MUXOpenChannelResponse) {}
+  rpc OpenMUXRelay (MUXOpenRelayRequest) returns (MUXOpenRelayResponse) {}
+  
+  rpc CloseMUXRelay (MUXCloseRelayRequest) returns (MUXCloseRelayResponse) {}
+  
+  rpc CloseMUXAllRelays (MUXCloseAllRequest) returns (MUXCloseAllResponse) {}
   
   rpc DisconnectAllMUXChannels (MUXDisconnectAllRequest) returns (MUXDisconnectAllResponse) {}
   
-  rpc CloseMUXSession (MUXCloseSessionRequest) returns (MUXCloseSessionResponse) {}
-  
   rpc ResetMUX (MUXResetRequest) returns (MUXResetResponse) {}
+  
+  rpc GetMUXStatus (MUXGetStatusRequest) returns (MUXGetStatusResponse) {}
+  
+  rpc GetMUXChannelNames (MUXGetChannelNamesRequest) returns (MUXGetChannelNamesResponse) {}
+  
+  rpc GetMUXRelayInfo (MUXGetRelayInfoRequest) returns (MUXGetRelayInfoResponse) {}
 }
 
 //---------------------------------------------------------------------
@@ -58,6 +70,13 @@ service MeasurementService {
 message ErrorOut {
   int64 errCode = 1;
   string errMessage = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message RelayInfoCluster {
+  string RelayName = 1;
+  int64 RelayCount = 2;
 }
 
 //---------------------------------------------------------------------
@@ -75,14 +94,12 @@ message MUXOpenSessionResponse {
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message MUXCloseChannelRequest {
-  string Channel1 = 1;
-  string Channel2 = 2;
+message MUXCloseSessionRequest {
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message MUXCloseChannelResponse {
+message MUXCloseSessionResponse {
   ErrorOut error = 1;
 }
 
@@ -101,6 +118,55 @@ message MUXOpenChannelResponse {
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+message MUXCloseChannelRequest {
+  string Channel1 = 1;
+  string Channel2 = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXCloseChannelResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+
+//---------------------------------------------------------------------
+message MUXOpenRelayRequest {
+  string RelayName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXOpenRelayResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXCloseRelayRequest {
+  string RelayName = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXCloseRelayResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXCloseAllRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXCloseAllResponse {
+  ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 message MUXDisconnectAllRequest {
 }
 
@@ -112,25 +178,49 @@ message MUXDisconnectAllResponse {
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-message MUXCloseSessionRequest {
-}
-
-//---------------------------------------------------------------------
-//---------------------------------------------------------------------
-message MUXCloseSessionResponse {
-  ErrorOut error = 1;
-}
-
-//---------------------------------------------------------------------
-//---------------------------------------------------------------------
 message MUXResetRequest {
-  string MUXName = 1;
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 message MUXResetResponse {
   ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXGetStatusRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXGetStatusResponse {
+  repeated string Status = 1;
+  ErrorOut error = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXGetChannelNamesRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXGetChannelNamesResponse {
+  repeated string ChannelNames = 1;
+  ErrorOut error = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXGetRelayInfoRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message MUXGetRelayInfoResponse {
+  repeated RelayInfoCluster RelayInfo = 1;
+  ErrorOut error = 2;
 }
 
 //---------------------------------------------------------------------
