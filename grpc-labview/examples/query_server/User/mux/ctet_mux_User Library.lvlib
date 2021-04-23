@@ -9,6 +9,7 @@
 </Property>
 	<Item Name="Types" Type="Folder">
 		<Item Name="ctet_mux.ctl" Type="VI" URL="../Types/ctet_mux.ctl"/>
+		<Item Name="Switch Action.ctl" Type="VI" URL="../Types/Switch Action.ctl"/>
 	</Item>
 	<Item Name="VIs" Type="Folder">
 		<Item Name="CloseMUXAllRelays.vi" Type="VI" URL="../VIs/CloseMUXAllRelays.vi"/>
@@ -16,11 +17,15 @@
 		<Item Name="CloseMUXRelay.vi" Type="VI" URL="../VIs/CloseMUXRelay.vi"/>
 		<Item Name="CloseMUXSession.vi" Type="VI" URL="../VIs/CloseMUXSession.vi"/>
 		<Item Name="DisconnectAll.vi" Type="VI" URL="../VIs/DisconnectAll.vi"/>
+		<Item Name="GetMUXChannelNames.vi" Type="VI" URL="../VIs/GetMUXChannelNames.vi"/>
+		<Item Name="GetMUXRelayInfo.vi" Type="VI" URL="../VIs/GetMUXRelayInfo.vi"/>
+		<Item Name="GetMUXStatus.vi" Type="VI" URL="../VIs/GetMUXStatus.vi"/>
 		<Item Name="OpenMUXChannel.vi" Type="VI" URL="../VIs/OpenMUXChannel.vi"/>
 		<Item Name="OpenMUXRelay.vi" Type="VI" URL="../VIs/OpenMUXRelay.vi"/>
 		<Item Name="OpenMUXSession.vi" Type="VI" URL="../VIs/OpenMUXSession.vi"/>
 		<Item Name="Query.vi" Type="VI" URL="../VIs/Query.vi"/>
 		<Item Name="Reset.vi" Type="VI" URL="../VIs/Reset.vi"/>
+		<Item Name="SwitchState.vi" Type="VI" URL="../VIs/SwitchState.vi"/>
 	</Item>
 	<Item Name="ctet_mux_User Main.vi" Type="VI" URL="../ctet_mux_User Main.vi"/>
 </Library>

@@ -14,6 +14,8 @@
 		<Item Name="CloseSession.vi" Type="VI" URL="../VIs/CloseSession.vi"/>
 		<Item Name="ConfigMeasurement.vi" Type="VI" URL="../VIs/ConfigMeasurement.vi"/>
 		<Item Name="Configure.vi" Type="VI" URL="../VIs/Configure.vi"/>
+		<Item Name="GetLastExtCalInfo.vi" Type="VI" URL="../VIs/GetLastExtCalInfo.vi"/>
+		<Item Name="GetLastSelfCalInfo.vi" Type="VI" URL="../VIs/GetLastSelfCalInfo.vi"/>
 		<Item Name="Measure.vi" Type="VI" URL="../VIs/Measure.vi"/>
 		<Item Name="OpenSession.vi" Type="VI" URL="../VIs/OpenSession.vi"/>
 		<Item Name="PerformMeasurement.vi" Type="VI" URL="../VIs/PerformMeasurement.vi"/>

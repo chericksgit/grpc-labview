@@ -155,3 +155,27 @@ smu_close_session_response = measurementServer.CloseSMUSession(ms.SMUCloseSessio
 print ("SMU Close Session")
 print (smu_close_session_response)
 print("")
+
+# Open SMU Session
+smu_open_session_response = measurementServer.OpenSMUSession(ms.SMUOpenSessionRequest(SMUName = "SMU"))
+print ("SMU Open Session")
+print (smu_open_session_response)
+print("")
+
+# Get SMU Last Ext Cal Info
+smu_last_ext_cal_info_response = measurementServer.GetSMULastExtCalInfo(ms.SMULastExtCalInfoRequest())
+print ("Get SMU Last Ext Cal Info")
+print (smu_last_ext_cal_info_response)
+print("")
+
+# Get SMU Last Self Cal Info
+smu_last_self_cal_info_response = measurementServer.GetSMULastSelfCalInfo(ms.SMULastSelfCalInfoRequest())
+print ("Get SMU Last Self Cal Info")
+print (smu_last_self_cal_info_response)
+print("")
+
+# Close SMU Session
+smu_close_session_response = measurementServer.CloseSMUSession(ms.SMUCloseSessionRequest())
+print ("SMU Close Session")
+print (smu_close_session_response)
+print("")

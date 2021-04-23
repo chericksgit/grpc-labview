@@ -107,3 +107,27 @@ print("")
 # measurementServer.Invoke(ms.InvokeRequest(command = "Reset"))
 
 print("Done")
+
+# Open DMM Session
+dmm_open_session_response = measurementServer.OpenDMMSession(ms.DMMOpenSessionRequest(DMMName = "DMM"))
+print ("DMM Open Session")
+print (dmm_open_session_response)
+print("")
+
+# Get DMM Last Ext Cal Info
+DMM_last_ext_cal_info_response = measurementServer.GetDMMLastExtCalInfo(ms.DMMLastExtCalInfoRequest())
+print ("Get DMM Last Ext Cal Info")
+print (DMM_last_ext_cal_info_response)
+print("")
+
+# Get DMM Last Self Cal Info
+DMM_last_self_cal_info_response = measurementServer.GetDMMLastSelfCalInfo(ms.DMMLastSelfCalInfoRequest())
+print ("Get DMM Last Self Cal Info")
+print (DMM_last_self_cal_info_response)
+print("")
+
+# Close DMM Session
+dmm_close_session_response = measurementServer.CloseDMMSession(ms.DMMCloseSessionRequest())
+print ("DMM Close Session")
+print (dmm_close_session_response)
+print("")

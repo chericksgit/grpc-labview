@@ -51,6 +51,10 @@ service MeasurementService {
   rpc SelfCalibrateDMM (DMMSelfCalRequest) returns (DMMSelfCalResponse) {}
   
   rpc ResetDMM (DMMResetRequest) returns (DMMResetResponse) {}
+  
+  rpc GetDMMLastExtCalInfo (DMMLastExtCalInfoRequest) returns (DMMLastExtCalInfoResponse) {}
+  
+  rpc GetDMMLastSelfCalInfo (DMMLastSelfCalInfoRequest) returns (DMMLastSelfCalInfoResponse) {}
 }
 
 //---------------------------------------------------------------------
@@ -146,6 +150,38 @@ message DMMResetRequest {
 //---------------------------------------------------------------------
 message DMMResetResponse {
   ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DMMLastExtCalInfoRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DMMLastExtCalInfoResponse {
+  int64 month = 1;
+  int64 day = 2;
+  int64 year = 3;
+  int64 hour = 4;
+  int64 minute = 5;
+  ErrorOut error = 6;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DMMLastSelfCalInfoRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message DMMLastSelfCalInfoResponse {
+  int64 month = 1;
+  int64 day = 2;
+  int64 year = 3;
+  int64 hour = 4;
+  int64 minute = 5;
+  ErrorOut error = 6;
 }
 
 //---------------------------------------------------------------------

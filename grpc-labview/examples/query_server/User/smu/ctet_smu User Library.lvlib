@@ -23,6 +23,8 @@
 		<Item Name="PerformMeasurement.vi" Type="VI" URL="../VIs/PerformMeasurement.vi"/>
 		<Item Name="EnableOutput.vi" Type="VI" URL="../VIs/EnableOutput.vi"/>
 		<Item Name="DisableOutput.vi" Type="VI" URL="../VIs/DisableOutput.vi"/>
+		<Item Name="GetLastExtCalInfo.vi" Type="VI" URL="../VIs/GetLastExtCalInfo.vi"/>
+		<Item Name="GetLastSelfCalInfo.vi" Type="VI" URL="../VIs/GetLastSelfCalInfo.vi"/>
 	</Item>
 	<Item Name="ctet_smu_User Main.vi" Type="VI" URL="../ctet_smu_User Main.vi"/>
 </Library>
