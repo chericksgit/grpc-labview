@@ -3,7 +3,7 @@ import grpc
 import ctet_dio_measurement_service_pb2 as ms
 import ctet_dio_measurement_service_pb2_grpc as msgrpc
  
-serverAddress = "192.168.1.20:50051"
+serverAddress = "192.168.1.20:50054"
 # serverAddress = "localhost:50051"
 channel = grpc.insecure_channel(serverAddress)
 measurementServer = msgrpc.MeasurementServiceStub(channel)
