@@ -1,0 +1,95 @@
+//---------------------------------------------------------------------
+// Copyright 2020 National Instruments
+//
+// Licensed under the MIT License;
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://mit-license.org/
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//---------------------------------------------------------------------
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+syntax = "proto3";
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+option java_multiple_files = true;
+option java_package = "labview.queryserver";
+option java_outer_classname = "QueryServer";
+option objc_class_prefix = "LVQS";
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+package queryserver;
+
+//---------------------------------------------------------------------
+// The QueryServer service definition.
+//---------------------------------------------------------------------
+service QueryServer {
+  rpc Invoke (InvokeRequest) returns (InvokeResponse) {}
+  rpc Query (QueryRequest) returns (QueryResponse) {}
+  rpc PerformAnalogInput(AnalogInputRequest) returns (AnalogInputData) {}
+  rpc StreamAnalogInput(AnalogInputRequest) returns (stream AnalogInputData) {}
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message AnalogInputRequest {
+  string muxChannelPositive = 1;
+  string muxChannelNegative = 2;
+  int64 sampleRate = 3;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message AnalogInputData {
+  repeated double DMMValue = 1;
+  repeated double DAQValue0 = 2;
+  repeated double DAQValue1 = 3;
+  repeated double DAQValue2 = 4;
+  repeated double DAQValue3 = 5;
+  repeated double DAQValue4 = 6;
+  repeated double DAQValue5 = 7;
+  repeated double DAQValue6 = 8;
+  repeated double DAQValue7 = 9;
+  string t0 = 10;
+  double dt = 11;
+  bool errorstatus = 12;
+  int64 errorcode = 13;
+  string errorsource = 14;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message InvokeRequest {
+  string command = 1;
+  string parameter = 2;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message InvokeResponse {
+  int64 status = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message QueryRequest {
+  string query = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message QueryResponse {
+  string message = 1;
+  int64 status = 2;
+}
+
+//---------------------------------------------------------------------
