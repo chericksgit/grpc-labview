@@ -55,6 +55,10 @@ service MeasurementService {
   rpc SelfCalibrateSMU (SMUSelfCalRequest) returns (SMUSelfCalResponse) {}
   
   rpc ResetSMU (SMUResetRequest) returns (SMUResetResponse) {}
+  
+  rpc GetSMULastExtCalInfo (SMULastExtCalInfoRequest) returns (SMULastExtCalInfoResponse) {}
+  
+  rpc GetSMULastSelfCalInfo (SMULastSelfCalInfoRequest) returns (SMULastSelfCalInfoResponse) {}
 }
 
 //---------------------------------------------------------------------
@@ -160,8 +164,7 @@ message SMUCloseSessionResponse {
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 message SMUSelfCalRequest {
-  string SMUName = 1;
-  string SMUChannels = 2;
+  string SMUChannels = 1;
 }
 
 //---------------------------------------------------------------------
@@ -173,13 +176,44 @@ message SMUSelfCalResponse {
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 message SMUResetRequest {
-  string SMUName = 1;
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 message SMUResetResponse {
   ErrorOut error = 1;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMULastExtCalInfoRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMULastExtCalInfoResponse {
+  int64 month = 1;
+  int64 day = 2;
+  int64 year = 3;
+  int64 hour = 4;
+  int64 minute = 5;
+  ErrorOut error = 6;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMULastSelfCalInfoRequest {
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message SMULastSelfCalInfoResponse {
+  int64 month = 1;
+  int64 day = 2;
+  int64 year = 3;
+  int64 hour = 4;
+  int64 minute = 5;
+  ErrorOut error = 6;
 }
 
 //---------------------------------------------------------------------

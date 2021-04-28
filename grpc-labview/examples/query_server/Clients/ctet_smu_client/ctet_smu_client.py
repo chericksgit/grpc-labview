@@ -15,7 +15,9 @@ print("Server Uptime: " + uptime.message)
 print("")
 
 # Open SMU Session
-smu_open_session_response = measurementServer.OpenSMUSession(ms.SMUOpenSessionRequest(SMUName = "SMU"))
+smu_open_session_response = measurementServer.OpenSMUSession(ms.SMUOpenSessionRequest(
+    SMUName = "SMU", 
+    SMUChannels = "0"))
 print ("SMU Open Session")
 print (smu_open_session_response)
 print("")
@@ -38,7 +40,7 @@ print("")
 # Must have session open to the SMU
 print ("SMU Self Calibration")
 print("Performing SMU Self Calibration - this may take a few seconds...")
-smu_self_cal_response = measurementServer.SelfCalibrateSMU(ms.SMUSelfCalRequest())
+smu_self_cal_response = measurementServer.SelfCalibrateSMU(ms.SMUSelfCalRequest(SMUChannels = "0"))
 print (smu_self_cal_response)
 print("")
 
